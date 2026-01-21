@@ -4,18 +4,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
 :root {
-  --bg-dark: #0a0a0a;
-  --bg-purple-start: #7c3aed;
-  --bg-purple-mid: #a855f7;
-  --bg-purple-end: #c4b5fd;
-  --text-primary: #faf5ff;
-  --text-secondary: #a1a1aa;
-  --text-muted: #71717a;
-  --accent: #a855f7;
-  --accent-hover: #7c3aed;
+  --bg-dark: #0c0c0c;
+  --bg-purple-start: #1a0a25;
+  --bg-purple-mid: #9d6ece;
+  --bg-purple-end: #b87dd4;
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.6);
+  --text-muted: rgba(255, 255, 255, 0.4);
+  --accent: #9d6ece;
+  --accent-hover: #b87dd4;
   --card-bg: rgba(255, 255, 255, 0.05);
   --border: rgba(255, 255, 255, 0.1);
-  --success: #22c55e;
+  --success: #4ade80;
   --warning: #eab308;
 }
 
