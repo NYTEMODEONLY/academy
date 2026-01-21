@@ -1,0 +1,90 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "src/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "courses"
+    label: "Courses"
+    folder: "src/content/courses"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Thumbnail", name: "thumbnail", widget: "image", required: false }
+      - { label: "Category", name: "category", widget: "select", options: ["AI", "Marketing", "Web3", "Creative", "Tech"] }
+      - { label: "Premium Only", name: "premium", widget: "boolean", default: false }
+      - { label: "Order", name: "order", widget: "number", default: 1 }
+      - label: "Lessons"
+        name: "lessons"
+        widget: "list"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Slug", name: "slug", widget: "string" }
+          - { label: "Duration", name: "duration", widget: "string" }
+          - { label: "Premium", name: "premium", widget: "boolean", default: false }
+      - label: "What You'll Learn"
+        name: "whatYouWillLearn"
+        widget: "list"
+        field: { label: "Item", name: "item", widget: "string" }
+      - label: "Prerequisites"
+        name: "prerequisites"
+        widget: "list"
+        field: { label: "Item", name: "item", widget: "string" }
+      - label: "Who Is This For"
+        name: "whoIsThisFor"
+        widget: "list"
+        field: { label: "Item", name: "item", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Body", name: "body", widget: "markdown", required: false }
+
+  - name: "lessons"
+    label: "Lessons"
+    folder: "src/content/lessons"
+    create: true
+    slug: "{{course}}/{{slug}}"
+    path: "{{course}}/{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string" }
+      - { label: "Course Slug", name: "course", widget: "string" }
+      - { label: "Course Title", name: "courseTitle", widget: "string" }
+      - { label: "Order", name: "order", widget: "number" }
+      - { label: "Duration", name: "duration", widget: "string" }
+      - { label: "Premium", name: "premium", widget: "boolean", default: false }
+      - { label: "Video URL", name: "video", widget: "string", required: false, hint: "YouTube or Vimeo embed URL" }
+      - { label: "Content", name: "body", widget: "markdown" }
+
+  - name: "news"
+    label: "News Articles"
+    folder: "src/content/news"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string" }
+      - { label: "Excerpt", name: "excerpt", widget: "text" }
+      - { label: "Thumbnail", name: "thumbnail", widget: "image", required: false }
+      - { label: "Category", name: "category", widget: "select", options: ["AI", "Tech", "Web3", "Industry", "Tutorial"] }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Content", name: "body", widget: "markdown" }
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "Academy Home"
+        name: "home"
+        file: "src/_data/home.json"
+        fields:
+          - { label: "Hero Headline", name: "heroHeadline", widget: "string", default: "ACADEMY" }
+          - { label: "Hero Subhead", name: "heroSubhead", widget: "string" }
+          - label: "Stats"
+            name: "stats"
+            widget: "list"
+            fields:
+              - { label: "Number", name: "number", widget: "string" }
+              - { label: "Label", name: "label", widget: "string" }

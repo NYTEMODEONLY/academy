@@ -1,0 +1,44 @@
+---
+layout: layouts/base.njk
+title: All Courses
+showHeader: true
+permalink: /courses/
+---
+
+<section class="section section-dark" style="padding-top: 120px;">
+  <div class="container">
+    <div class="section-header text-left">
+      <nav class="breadcrumb">
+        <a href="/">Academy</a>
+        <span class="breadcrumb-separator">/</span>
+        <span>Courses</span>
+      </nav>
+      <h1 class="headline headline-lg">All Courses</h1>
+    </div>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+      <button class="filter-pill active" data-filter="all">All</button>
+      <button class="filter-pill" data-filter="AI">AI</button>
+      <button class="filter-pill" data-filter="Marketing">Marketing</button>
+      <button class="filter-pill" data-filter="Web3">Web3</button>
+      <button class="filter-pill" data-filter="Creative">Creative</button>
+      <button class="filter-pill" data-filter="Tech">Tech</button>
+    </div>
+
+    <!-- Course Grid -->
+    <div class="grid grid-3">
+      {% for course in collections.courses %}
+      <div data-category="{{ course.data.category }}">
+        {% include "partials/course-card.njk" %}
+      </div>
+      {% endfor %}
+    </div>
+
+    {% if collections.courses.length == 0 %}
+    <div class="text-center" style="padding: 80px 0;">
+      <p class="subhead">No courses yet. Check back soon!</p>
+    </div>
+    {% endif %}
+  </div>
+</section>

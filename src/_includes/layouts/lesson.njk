@@ -1,0 +1,110 @@
+---
+layout: layouts/base.njk
+showHeader: true
+---
+
+<div class="section section-dark" style="padding-top: 120px;">
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="/">Academy</a>
+      <span class="breadcrumb-separator">/</span>
+      <a href="/courses/">Courses</a>
+      <span class="breadcrumb-separator">/</span>
+      <a href="/courses/{{ course }}/">{{ courseTitle }}</a>
+      <span class="breadcrumb-separator">/</span>
+      <span>{{ title }}</span>
+    </nav>
+
+    <div class="two-col">
+      <div class="lesson-main">
+        <h1 class="headline headline-md mb-lg">{{ title }}</h1>
+
+        <div class="lesson-meta-bar mb-lg" style="display: flex; align-items: center; gap: 16px; color: var(--text-muted); font-size: 0.875rem;">
+          <span>{{ duration }}</span>
+          <span>Lesson {{ order }}</span>
+          {% if premium %}
+          <span class="pill pill-premium" style="font-size: 10px;">Premium</span>
+          {% endif %}
+        </div>
+
+        {% if video %}
+        <div class="video-container">
+          <iframe src="{{ video }}" frameborder="0" allowfullscreen></iframe>
+        </div>
+        {% endif %}
+
+        <div class="content">
+          {{ content | safe }}
+        </div>
+
+        <div class="lesson-actions mt-xl" style="display: flex; gap: 16px; flex-wrap: wrap;">
+          <button class="btn btn-accent" data-mark-complete data-course="{{ course }}" data-lesson="{{ slug }}">
+            Mark as Complete ✓
+          </button>
+        </div>
+
+        <!-- Prev/Next Navigation -->
+        <nav class="lesson-nav mt-xl" style="display: flex; justify-content: space-between; padding-top: 24px; border-top: 1px solid var(--border);">
+          {% set courseData = collections.courses | selectattr("data.slug", "equalto", course) | first %}
+          {% if courseData %}
+            {% set lessons = courseData.data.lessons %}
+            {% set currentIndex = -1 %}
+            {% for lesson in lessons %}
+              {% if lesson.slug == slug %}
+                {% set currentIndex = loop.index0 %}
+              {% endif %}
+            {% endfor %}
+
+            {% if currentIndex > 0 %}
+              {% set prevLesson = lessons[currentIndex - 1] %}
+              <a href="/courses/{{ course }}/{{ prevLesson.slug }}/" class="btn btn-outline btn-sm">
+                ← {{ prevLesson.title }}
+              </a>
+            {% else %}
+              <span></span>
+            {% endif %}
+
+            {% if currentIndex < lessons.length - 1 %}
+              {% set nextLesson = lessons[currentIndex + 1] %}
+              <a href="/courses/{{ course }}/{{ nextLesson.slug }}/" class="btn btn-outline btn-sm">
+                {{ nextLesson.title }} →
+              </a>
+            {% endif %}
+          {% endif %}
+        </nav>
+      </div>
+
+      <aside class="sidebar">
+        <div class="sidebar-card mb-lg">
+          <a href="/courses/{{ course }}/" class="sidebar-title" style="display: block; margin-bottom: 16px;">
+            {{ courseTitle }}
+          </a>
+          <div class="progress-bar mb-md">
+            <div class="progress-bar-fill" style="width: 0%" data-course-progress="{{ course }}"></div>
+          </div>
+        </div>
+
+        <div class="sidebar-card">
+          <div class="sidebar-title">Lessons</div>
+          <ul class="lesson-list" style="margin: 0 -24px -24px; border-top: 1px solid var(--border);">
+            {% set courseData = collections.courses | selectattr("data.slug", "equalto", course) | first %}
+            {% if courseData %}
+              {% for lesson in courseData.data.lessons %}
+              <li class="lesson-item {% if lesson.slug == slug %}current{% endif %}" data-lesson-status data-course="{{ course }}" data-lesson="{{ lesson.slug }}">
+                <span class="lesson-number">{{ loop.index | string | padStart(2, '0') }}</span>
+                <div class="lesson-info">
+                  <a href="/courses/{{ course }}/{{ lesson.slug }}/" class="lesson-title">{{ lesson.title }}</a>
+                  <div class="lesson-meta">{{ lesson.duration }}</div>
+                </div>
+                <div class="lesson-status {% if lesson.premium %}locked{% endif %}">
+                  {% if lesson.premium %}🔒{% else %}<span class="status-icon">○</span>{% endif %}
+                </div>
+              </li>
+              {% endfor %}
+            {% endif %}
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>

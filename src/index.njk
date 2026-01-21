@@ -1,10 +1,12 @@
 ---
 layout: layouts/base.njk
-title: Academy
+title: Home
+showHeader: false
+showFooter: false
 ---
 
-<main class="hero section-purple">
-  <!-- Logo -->
+<!-- Hero Section -->
+<section class="hero section-purple">
   <a href="https://nytemode.com" class="logo">
     <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
       <path d="M50 5C25 5 10 30 10 50C10 70 25 90 50 90C55 90 60 89 65 87C55 85 45 75 45 60C45 45 55 35 70 35C75 35 80 37 83 40C80 20 67 5 50 5Z" fill="currentColor"/>
@@ -12,29 +14,87 @@ title: Academy
     </svg>
   </a>
 
-  <!-- Back to main site -->
   <a href="https://nytemode.com" class="nav-link">
-    ← Back to NYTEMODE
+    ← NYTEMODE
   </a>
 
   <div class="hero-content">
-    <span class="badge">🚀 Coming Soon</span>
-    
-    <h1 class="headline headline-xl">ACADEMY</h1>
-    
-    <p class="subhead">Free AI & Tech Education</p>
-    
+    <h1 class="headline headline-xl">{{ home.heroHeadline }}</h1>
+    <p class="subhead">{{ home.heroSubhead }}</p>
+
     <div class="cta-group">
-      <a href="https://nytemode.com/#contact" class="btn btn-outline">
-        Get Notified →
+      <a href="/courses/" class="btn btn-outline">
+        Browse Courses →
       </a>
-      <a href="https://nytemode.com" class="btn btn-solid">
-        Visit NYTEMODE
+      <a href="/news/" class="btn btn-solid">
+        Latest News
       </a>
     </div>
   </div>
-</main>
+</section>
 
-<footer class="footer section-dark">
-  <p>NYTEMODE LLC · <a href="https://nytemode.com">nytemode.com</a> · © 2025</p>
+<!-- Featured Courses Section -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="headline headline-lg">Featured Courses</h2>
+    </div>
+
+    <div class="grid grid-3">
+      {% for course in collections.courses | limit(3) %}
+        {% include "partials/course-card.njk" %}
+      {% endfor %}
+    </div>
+
+    <div class="text-center mt-xl">
+      <a href="/courses/" class="btn btn-outline">View All Courses →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Latest News Section -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="headline headline-lg">Latest in AI</h2>
+    </div>
+
+    <div class="grid grid-3">
+      {% for article in collections.news | limit(3) %}
+        {% include "partials/news-card.njk" %}
+      {% endfor %}
+    </div>
+
+    <div class="text-center mt-xl">
+      <a href="/news/" class="btn btn-outline">View All News →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Stats Section -->
+<section class="section section-dark">
+  <div class="container">
+    {% include "partials/stats.njk" %}
+  </div>
+</section>
+
+<!-- Premium CTA Section -->
+<section class="section section-purple">
+  <div class="container text-center">
+    <h2 class="headline headline-lg mb-md">Go Premium</h2>
+    <p class="subhead mb-lg">Unlock exclusive content + Discord perks</p>
+    <a href="/membership/" class="btn btn-outline btn-lg">Learn More →</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-links">
+    <a href="/">Academy</a>
+    <a href="/courses/">Courses</a>
+    <a href="/news/">News</a>
+    <a href="/membership/">Premium</a>
+    <a href="https://nytemode.com" target="_blank">NYTEMODE</a>
+  </div>
+  <p>NYTEMODE LLC · <a href="https://nytemode.com">nytemode.com</a> · &copy; {% year %}</p>
 </footer>

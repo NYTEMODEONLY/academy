@@ -1,0 +1,27 @@
+{% set courseData = course.data if course.data else course %}
+<a href="/courses/{{ courseData.slug }}/" class="course-card">
+  {% if courseData.thumbnail %}
+  <img src="{{ courseData.thumbnail }}" alt="{{ courseData.title }}" class="course-card-image">
+  {% else %}
+  <div class="course-card-image" style="background: linear-gradient(135deg, var(--bg-purple-start), var(--bg-purple-mid));"></div>
+  {% endif %}
+  <div class="course-card-overlay">
+    <div class="course-card-pills">
+      <span class="pill">{{ courseData.category }}</span>
+    </div>
+    <div class="course-card-badge">
+      {% if courseData.premium %}
+      <span class="pill pill-premium">Premium</span>
+      {% else %}
+      <span class="pill pill-free">Free</span>
+      {% endif %}
+    </div>
+    <div class="course-card-content">
+      <h3 class="course-card-title">{{ courseData.title }}</h3>
+      <p class="course-card-desc">{{ courseData.description }}</p>
+      <div class="course-card-meta">
+        <span>{{ courseData.lessons | length }} Lessons</span>
+      </div>
+    </div>
+  </div>
+</a>

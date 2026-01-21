@@ -1,0 +1,102 @@
+---
+layout: layouts/base.njk
+title: Membership
+showHeader: true
+permalink: /membership/
+---
+
+<section class="section section-dark" style="padding-top: 120px;">
+  <div class="container">
+    <div class="section-header text-center">
+      <h1 class="headline headline-lg mb-md">Unlock Everything</h1>
+      <p class="subhead">Premium membership for serious learners</p>
+    </div>
+
+    <!-- Pricing Cards -->
+    <div class="grid grid-2" style="max-width: 800px; margin: 0 auto;">
+      <!-- Free Tier -->
+      <div class="pricing-card">
+        <div class="pricing-tier">Free</div>
+        <div class="pricing-price">$0<span>/forever</span></div>
+        <ul class="pricing-features">
+          <li><span class="check">✓</span> All free courses</li>
+          <li><span class="check">✓</span> AI news feed</li>
+          <li><span class="check">✓</span> Course progress tracking</li>
+          <li><span class="check">✓</span> Community access</li>
+        </ul>
+        <button class="btn btn-outline" disabled style="width: 100%;">Current Plan</button>
+      </div>
+
+      <!-- Premium Tier -->
+      <div class="pricing-card featured">
+        <div class="pricing-tier">Premium</div>
+        <div class="pricing-price">$9<span>/month</span></div>
+        <ul class="pricing-features">
+          <li><span class="check">✓</span> Everything in Free</li>
+          <li><span class="check">✓</span> All premium courses</li>
+          <li><span class="check">✓</span> Discord "Premium" role</li>
+          <li><span class="check">✓</span> Early access to new content</li>
+          <li><span class="check">✓</span> Direct support from NYTEMODE</li>
+        </ul>
+        <a href="#" class="btn btn-accent" style="width: 100%;">Subscribe with Stripe →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="section section-dark">
+  <div class="container container-narrow">
+    <h2 class="headline headline-md text-center mb-xl">Frequently Asked Questions</h2>
+
+    <div class="accordion">
+      <div class="accordion-item">
+        <button class="accordion-trigger" data-accordion-trigger>
+          How does billing work?
+          <span class="accordion-icon">▼</span>
+        </button>
+        <div class="accordion-content" data-accordion-content>
+          <div class="accordion-body">
+            You'll be charged $9 monthly through Stripe. Your subscription renews automatically each month until you cancel. You can cancel anytime from your dashboard.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger" data-accordion-trigger>
+          Can I cancel anytime?
+          <span class="accordion-icon">▼</span>
+        </button>
+        <div class="accordion-content" data-accordion-content>
+          <div class="accordion-body">
+            Yes! You can cancel your subscription at any time. You'll retain access to premium content until the end of your current billing period.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger" data-accordion-trigger>
+          How do I get my Discord role?
+          <span class="accordion-icon">▼</span>
+        </button>
+        <div class="accordion-content" data-accordion-content>
+          <div class="accordion-body">
+            After subscribing, connect your Discord account from your dashboard. Your "Premium" role will be automatically assigned within a few minutes.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-trigger" data-accordion-trigger>
+          What payment methods do you accept?
+          <span class="accordion-icon">▼</span>
+        </button>
+        <div class="accordion-content" data-accordion-content>
+          <div class="accordion-body">
+            We accept all major credit cards (Visa, Mastercard, American Express) through Stripe. We also support Apple Pay and Google Pay where available.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

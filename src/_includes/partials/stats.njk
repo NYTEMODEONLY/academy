@@ -1,0 +1,8 @@
+<div class="grid grid-4">
+  {% for stat in home.stats %}
+  <div class="stat-card">
+    <div class="stat-number">{{ stat.number }}</div>
+    <div class="stat-label">{{ stat.label }}</div>
+  </div>
+  {% endfor %}
+</div>

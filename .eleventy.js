@@ -42,6 +42,17 @@ module.exports = function(eleventyConfig) {
     return arr.slice(0, limit);
   });
 
+  eleventyConfig.addFilter("padStart", function(str, length, char) {
+    return String(str).padStart(length, char || '0');
+  });
+
+  eleventyConfig.addFilter("selectattr", function(arr, attr, value) {
+    return arr.filter(item => {
+      const data = item.data || item;
+      return data[attr] === value;
+    });
+  });
+
   // Shortcodes
   eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
 

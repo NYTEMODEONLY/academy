@@ -4,3 +4,19 @@
 
 [build.environment]
   NODE_VERSION = "18"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+
+[[redirects]]
+  from = "/admin"
+  to = "/admin/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin/index.html"
+  status = 200

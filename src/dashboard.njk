@@ -1,0 +1,69 @@
+---
+layout: layouts/base.njk
+title: Dashboard
+showHeader: true
+permalink: /dashboard/
+---
+
+<section class="section section-dark" style="padding-top: 120px;">
+  <div class="container">
+    <div class="section-header text-left">
+      <h1 class="headline headline-lg mb-md">Welcome back!</h1>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span class="pill pill-free">Free Member</span>
+      </div>
+    </div>
+
+    <!-- Continue Learning -->
+    <section class="mb-xl">
+      <h2 class="headline headline-sm mb-lg">Continue Learning</h2>
+      <div class="grid grid-3" id="in-progress-courses">
+        <div class="card" style="padding: 48px; text-align: center;">
+          <p class="subhead">Start a course to track your progress here.</p>
+          <a href="/courses/" class="btn btn-outline mt-lg">Browse Courses</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Account Section -->
+    <section class="mb-xl">
+      <h2 class="headline headline-sm mb-lg">Account</h2>
+      <div class="grid grid-2">
+        <div class="card card-body">
+          <h3 style="color: var(--text-primary); margin-bottom: 16px;">Discord Connection</h3>
+          <p style="margin-bottom: 16px;">Connect your Discord account to get your Premium role.</p>
+          <button class="btn btn-outline btn-sm">Connect Discord</button>
+        </div>
+
+        <div class="card card-body">
+          <h3 style="color: var(--text-primary); margin-bottom: 16px;">Subscription</h3>
+          <p style="margin-bottom: 16px;">You're on the Free plan.</p>
+          <a href="/membership/" class="btn btn-accent btn-sm">Upgrade to Premium</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Your Courses -->
+    <section>
+      <h2 class="headline headline-sm mb-lg">Your Courses</h2>
+      <div class="grid grid-3" id="your-courses">
+        <div class="card" style="padding: 48px; text-align: center;">
+          <p class="subhead">Courses you've started will appear here.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+
+<script>
+// Dashboard-specific script to show user's courses
+document.addEventListener('DOMContentLoaded', function() {
+  const progress = JSON.parse(localStorage.getItem('nytemode_academy_progress') || '{"courses":{}}');
+  const startedCourses = Object.keys(progress.courses);
+
+  if (startedCourses.length > 0) {
+    // Would populate with actual course data
+    console.log('Started courses:', startedCourses);
+  }
+});
+</script>

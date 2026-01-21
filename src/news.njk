@@ -1,0 +1,44 @@
+---
+layout: layouts/base.njk
+title: AI News
+showHeader: true
+permalink: /news/
+---
+
+<section class="section section-dark" style="padding-top: 120px;">
+  <div class="container">
+    <div class="section-header text-left">
+      <nav class="breadcrumb">
+        <a href="/">Academy</a>
+        <span class="breadcrumb-separator">/</span>
+        <span>News</span>
+      </nav>
+      <h1 class="headline headline-lg">AI News</h1>
+    </div>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+      <button class="filter-pill active" data-filter="all">All</button>
+      <button class="filter-pill" data-filter="AI">AI</button>
+      <button class="filter-pill" data-filter="Tech">Tech</button>
+      <button class="filter-pill" data-filter="Web3">Web3</button>
+      <button class="filter-pill" data-filter="Industry">Industry</button>
+      <button class="filter-pill" data-filter="Tutorial">Tutorial</button>
+    </div>
+
+    <!-- News Grid -->
+    <div class="grid grid-3">
+      {% for article in collections.news %}
+      <div data-category="{{ article.data.category }}">
+        {% include "partials/news-card.njk" %}
+      </div>
+      {% endfor %}
+    </div>
+
+    {% if collections.news.length == 0 %}
+    <div class="text-center" style="padding: 80px 0;">
+      <p class="subhead">No articles yet. Check back soon!</p>
+    </div>
+    {% endif %}
+  </div>
+</section>

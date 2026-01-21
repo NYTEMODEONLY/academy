@@ -1,0 +1,124 @@
+---
+layout: layouts/base.njk
+showHeader: true
+---
+
+<div class="section section-dark" style="padding-top: 120px;">
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="/">Academy</a>
+      <span class="breadcrumb-separator">/</span>
+      <a href="/courses/">Courses</a>
+      <span class="breadcrumb-separator">/</span>
+      <span>{{ title }}</span>
+    </nav>
+
+    <!-- Course Hero -->
+    <div class="course-hero mb-xl">
+      <div class="course-hero-pills mb-md">
+        <span class="pill">{{ category }}</span>
+        {% if premium %}
+        <span class="pill pill-premium">Premium</span>
+        {% else %}
+        <span class="pill pill-free">Free</span>
+        {% endif %}
+      </div>
+
+      <h1 class="headline headline-lg mb-md">{{ title }}</h1>
+      <p class="subhead mb-lg">{{ description }}</p>
+
+      <div class="course-meta" style="display: flex; align-items: center; gap: 24px; color: var(--text-muted); font-size: 0.875rem;">
+        <span>{{ lessons | length }} Lessons</span>
+        <span>By NYTEMODE</span>
+      </div>
+
+      {% if lessons and lessons.length > 0 %}
+      <a href="/courses/{{ slug }}/{{ lessons[0].slug }}/" class="btn btn-outline mt-lg">
+        Start Course →
+      </a>
+      {% endif %}
+    </div>
+
+    <div class="two-col">
+      <div class="course-main">
+        <!-- Curriculum -->
+        <section class="mb-xl">
+          <h2 class="headline headline-sm mb-lg">Curriculum</h2>
+          <ul class="lesson-list">
+            {% for lesson in lessons %}
+            <li class="lesson-item" data-lesson-status data-course="{{ slug }}" data-lesson="{{ lesson.slug }}">
+              <span class="lesson-number">{{ loop.index | string | padStart(2, '0') }}</span>
+              <div class="lesson-info">
+                <a href="/courses/{{ slug }}/{{ lesson.slug }}/" class="lesson-title">{{ lesson.title }}</a>
+                <div class="lesson-meta">
+                  {{ lesson.duration }}
+                  {% if lesson.premium %} · Premium{% endif %}
+                </div>
+              </div>
+              <div class="lesson-status {% if lesson.premium %}locked{% endif %}">
+                {% if lesson.premium %}
+                🔒
+                {% else %}
+                <span class="status-icon">○</span>
+                {% endif %}
+              </div>
+            </li>
+            {% endfor %}
+          </ul>
+        </section>
+
+        <!-- About -->
+        {% if whatYouWillLearn %}
+        <section class="mb-xl">
+          <h2 class="headline headline-sm mb-lg">What You'll Learn</h2>
+          <ul class="content">
+            {% for item in whatYouWillLearn %}
+            <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+        </section>
+        {% endif %}
+
+        {% if prerequisites %}
+        <section class="mb-xl">
+          <h2 class="headline headline-sm mb-lg">Prerequisites</h2>
+          <ul class="content">
+            {% for item in prerequisites %}
+            <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+        </section>
+        {% endif %}
+
+        {% if whoIsThisFor %}
+        <section class="mb-xl">
+          <h2 class="headline headline-sm mb-lg">Who Is This For</h2>
+          <ul class="content">
+            {% for item in whoIsThisFor %}
+            <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+        </section>
+        {% endif %}
+
+        {% if content %}
+        <section class="content">
+          {{ content | safe }}
+        </section>
+        {% endif %}
+      </div>
+
+      <aside class="sidebar">
+        <div class="sidebar-card">
+          <div class="sidebar-title">Your Progress</div>
+          <div class="progress-bar mb-md">
+            <div class="progress-bar-fill" style="width: 0%" data-course-progress="{{ slug }}"></div>
+          </div>
+          <p style="font-size: 0.875rem; color: var(--text-muted);">
+            <span data-completed-count="{{ slug }}">0</span> / {{ lessons | length }} lessons completed
+          </p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>

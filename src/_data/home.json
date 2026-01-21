@@ -1,0 +1,10 @@
+{
+  "heroHeadline": "ACADEMY",
+  "heroSubhead": "Free AI & Tech Education",
+  "stats": [
+    { "number": "5+", "label": "Courses" },
+    { "number": "20+", "label": "Lessons" },
+    { "number": "10+", "label": "Articles" },
+    { "number": "FREE", "label": "Forever" }
+  ]
+}

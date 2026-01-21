@@ -1,0 +1,21 @@
+{% set articleData = article.data if article.data else article %}
+<article class="news-card">
+  <a href="/news/{{ articleData.slug }}/">
+    {% if articleData.thumbnail %}
+    <img src="{{ articleData.thumbnail }}" alt="{{ articleData.title }}" class="news-card-image">
+    {% else %}
+    <div class="news-card-image" style="background: linear-gradient(135deg, var(--bg-purple-start), var(--bg-purple-mid));"></div>
+    {% endif %}
+  </a>
+  <div class="news-card-body">
+    <div class="news-card-meta">
+      <span class="pill" style="padding: 4px 12px; font-size: 10px;">{{ articleData.category }}</span>
+      <time>{{ articleData.date | readableDate }}</time>
+    </div>
+    <a href="/news/{{ articleData.slug }}/">
+      <h3 class="news-card-title">{{ articleData.title }}</h3>
+    </a>
+    <p class="news-card-excerpt">{{ articleData.excerpt }}</p>
+    <a href="/news/{{ articleData.slug }}/" class="news-card-link">Read More →</a>
+  </div>
+</article>
