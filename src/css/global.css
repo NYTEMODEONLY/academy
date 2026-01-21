@@ -1,0 +1,214 @@
+/* NYTEMODE Academy - Design System */
+
+:root {
+  --bg-dark: #0a0a0a;
+  --bg-purple-start: #7c3aed;
+  --bg-purple-mid: #a855f7;
+  --bg-purple-end: #c4b5fd;
+  --text-primary: #faf5ff;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+  --accent: #a855f7;
+  --accent-hover: #7c3aed;
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Typography */
+.headline {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.headline-xl {
+  font-size: clamp(4rem, 15vw, 12rem);
+  text-transform: uppercase;
+}
+
+.headline-lg {
+  font-size: clamp(2rem, 5vw, 4rem);
+}
+
+.subhead {
+  font-family: 'Inter', sans-serif;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--text-secondary);
+  font-size: 1.25rem;
+}
+
+.accent-text {
+  background: linear-gradient(135deg, var(--bg-purple-start), var(--bg-purple-mid));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Sections */
+.section-purple {
+  background: linear-gradient(180deg, var(--bg-purple-start) 0%, var(--bg-purple-mid) 50%, var(--bg-purple-end) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.section-dark {
+  background: var(--bg-dark);
+}
+
+/* Hero */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  position: relative;
+}
+
+.hero-content {
+  max-width: 1200px;
+  z-index: 1;
+}
+
+/* Logo */
+.logo {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+}
+
+.logo svg {
+  width: 48px;
+  height: 48px;
+  fill: var(--text-primary);
+}
+
+/* Navigation */
+.nav-link {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 14px 32px;
+  border-radius: 9999px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-outline {
+  border: 1px solid var(--text-primary);
+  background: transparent;
+  color: var(--text-primary);
+}
+
+.btn-outline:hover {
+  background: var(--text-primary);
+  color: var(--bg-dark);
+}
+
+.btn-solid {
+  border: 1px solid var(--text-primary);
+  background: var(--text-primary);
+  color: var(--bg-dark);
+}
+
+.btn-solid:hover {
+  background: transparent;
+  color: var(--text-primary);
+}
+
+/* CTA Group */
+.cta-group {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Coming Soon Badge */
+.badge {
+  display: inline-block;
+  padding: 8px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Footer */
+.footer {
+  padding: 2rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.footer a {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: var(--text-primary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero {
+    padding: 1rem;
+  }
+  
+  .cta-group {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+}

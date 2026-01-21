@@ -1,0 +1,12 @@
+{
+  "name": "nytemode-academy",
+  "version": "1.0.0",
+  "description": "NYTEMODE Academy - Free AI & Tech Education",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^2.0.1"
+  }
+}
