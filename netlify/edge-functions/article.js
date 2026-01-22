@@ -90,11 +90,17 @@ function generateArticlePage(article, contentHtml) {
     const title = article.seo_title || article.title;
     const description = article.seo_description || article.excerpt || '';
     const keywords = (article.seo_keywords || []).join(', ');
-    const thumbnail = article.thumbnail || '/images/news/default-thumbnail.jpg';
+    const thumbnail = article.thumbnail || null; // No default, we'll use a gradient
+    const hasThumbnail = thumbnail && thumbnail.trim() !== '';
     const publishedDate = article.published_at ? new Date(article.published_at).toISOString() : new Date().toISOString();
     const formattedDate = article.published_at
         ? new Date(article.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
         : '';
+
+    // Default OG image if no thumbnail
+    const ogImage = hasThumbnail
+        ? (thumbnail.startsWith('http') ? thumbnail : `${siteUrl}${thumbnail}`)
+        : `${siteUrl}/images/og-default.png`;
 
     // JSON-LD structured data
     const jsonLd = {
@@ -102,7 +108,7 @@ function generateArticlePage(article, contentHtml) {
         "@type": "Article",
         "headline": article.title,
         "description": description,
-        "image": thumbnail.startsWith('http') ? thumbnail : `${siteUrl}${thumbnail}`,
+        "image": ogImage,
         "datePublished": publishedDate,
         "dateModified": article.updated_at || publishedDate,
         "author": {
@@ -140,7 +146,7 @@ function generateArticlePage(article, contentHtml) {
     <meta property="og:url" content="${siteUrl}/news/${article.slug}/">
     <meta property="og:title" content="${escapeHtml(title)}">
     <meta property="og:description" content="${escapeHtml(description)}">
-    <meta property="og:image" content="${thumbnail.startsWith('http') ? thumbnail : siteUrl + thumbnail}">
+    <meta property="og:image" content="${ogImage}">
     <meta property="og:site_name" content="NYTEMODE Academy">
     <meta property="article:published_time" content="${publishedDate}">
 
@@ -149,7 +155,7 @@ function generateArticlePage(article, contentHtml) {
     <meta property="twitter:url" content="${siteUrl}/news/${article.slug}/">
     <meta property="twitter:title" content="${escapeHtml(title)}">
     <meta property="twitter:description" content="${escapeHtml(description)}">
-    <meta property="twitter:image" content="${thumbnail.startsWith('http') ? thumbnail : siteUrl + thumbnail}">
+    <meta property="twitter:image" content="${ogImage}">
 
     <!-- Canonical -->
     <link rel="canonical" href="${siteUrl}/news/${article.slug}/">
@@ -175,8 +181,9 @@ function generateArticlePage(article, contentHtml) {
             display: flex;
             align-items: flex-end;
             padding: 80px 0 60px;
-            background: linear-gradient(180deg, rgba(10, 10, 10, 0) 0%, rgba(10, 10, 10, 0.9) 100%),
-                        url('${escapeHtml(thumbnail)}') center/cover no-repeat;
+            background: ${hasThumbnail
+                ? `linear-gradient(180deg, rgba(10, 10, 10, 0) 0%, rgba(10, 10, 10, 0.9) 100%), url('${escapeHtml(thumbnail)}') center/cover no-repeat`
+                : 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)'};
         }
 
         .article-meta {
