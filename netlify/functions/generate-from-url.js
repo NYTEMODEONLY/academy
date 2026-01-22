@@ -168,17 +168,32 @@ exports.handler = async (event, context) => {
  */
 async function fetchPageContent(url) {
     try {
+        // Use a realistic browser user agent to avoid blocks
         const response = await fetch(url, {
             headers: {
-                'User-Agent': 'Mozilla/5.0 (compatible; NYTEMODE-Bot/1.0)'
-            }
+                'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+                'Accept-Language': 'en-US,en;q=0.5',
+                'Accept-Encoding': 'gzip, deflate, br',
+                'Connection': 'keep-alive',
+                'Upgrade-Insecure-Requests': '1',
+                'Sec-Fetch-Dest': 'document',
+                'Sec-Fetch-Mode': 'navigate',
+                'Sec-Fetch-Site': 'none',
+                'Sec-Fetch-User': '?1'
+            },
+            redirect: 'follow'
         });
 
+        console.log(`Fetch response for ${url}: ${response.status} ${response.statusText}`);
+
         if (!response.ok) {
-            throw new Error(`HTTP ${response.status}`);
+            console.error(`Failed to fetch ${url}: HTTP ${response.status}`);
+            throw new Error(`Site returned HTTP ${response.status} - the site may be blocking automated requests`);
         }
 
         const html = await response.text();
+        console.log(`Fetched ${html.length} characters of HTML`);
 
         // Extract title
         const titleMatch = html.match(/<title[^>]*>([^<]+)<\/title>/i);
@@ -220,8 +235,9 @@ async function fetchPageContent(url) {
         };
 
     } catch (error) {
-        console.error(`Error fetching URL ${url}:`, error);
-        return null;
+        console.error(`Error fetching URL ${url}:`, error.message);
+        // Re-throw with more context
+        throw new Error(`Could not fetch URL: ${error.message}`);
     }
 }
 
