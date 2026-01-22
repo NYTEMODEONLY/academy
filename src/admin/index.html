@@ -1790,13 +1790,22 @@
             <h1 class="content-title">News Queue</h1>
             <p class="content-subtitle">AI-generated articles pending review</p>
           </div>
-          <button class="btn btn-secondary" onclick="loadSupabaseData().then(() => renderSection('news-queue'))">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
-              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
-            </svg>
-            Refresh
-          </button>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn btn-secondary" onclick="loadSupabaseData().then(() => renderSection('news-queue'))">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+              </svg>
+              Refresh
+            </button>
+            <button class="btn btn-primary" onclick="openUrlGenerator()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+              </svg>
+              Generate from URL
+            </button>
+          </div>
         </div>
 
         <div class="filter-tabs">
@@ -2059,6 +2068,135 @@
           </div>
         </div>
       `);
+    }
+
+    // =====================
+    // Generate from URL Functions
+    // =====================
+    function openUrlGenerator() {
+      showModal(`
+        <div class="modal" style="max-width: 500px;">
+          <div class="modal-header">
+            <h2 class="modal-title">Generate Article from URL</h2>
+            <button class="modal-close" onclick="closeModal()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 20px;">
+              Paste a URL to a news article or blog post. AI will read it and generate an original article in your style.
+            </p>
+            <div class="form-group">
+              <label class="form-label">URL *</label>
+              <input type="url" class="form-input" id="url-input" placeholder="https://example.com/article" autofocus>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Category</label>
+              <select class="form-input" id="url-category">
+                <option value="AI">AI</option>
+                <option value="Tech">Tech</option>
+                <option value="Web3">Web3</option>
+                <option value="Industry">Industry</option>
+                <option value="Tutorial">Tutorial</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+            <button class="btn btn-primary" id="generate-url-btn" onclick="generateFromUrl()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px;">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+              </svg>
+              Generate Article
+            </button>
+          </div>
+        </div>
+      `);
+
+      // Focus the input
+      setTimeout(() => document.getElementById('url-input')?.focus(), 100);
+    }
+
+    async function generateFromUrl() {
+      const urlInput = document.getElementById('url-input');
+      const categorySelect = document.getElementById('url-category');
+      const generateBtn = document.getElementById('generate-url-btn');
+
+      const url = urlInput?.value?.trim();
+      const category = categorySelect?.value || 'AI';
+
+      if (!url) {
+        showToast('Please enter a URL', 'error');
+        return;
+      }
+
+      // Validate URL format
+      try {
+        new URL(url);
+      } catch {
+        showToast('Please enter a valid URL', 'error');
+        return;
+      }
+
+      // Get Netlify Identity token for authentication
+      const user = netlifyIdentity.currentUser();
+      if (!user) {
+        showToast('Please log in to generate articles', 'error');
+        return;
+      }
+
+      // Disable button and show loading
+      if (generateBtn) {
+        generateBtn.disabled = true;
+        generateBtn.innerHTML = `
+          <div class="loading-spinner" style="width: 16px; height: 16px; border-width: 2px;"></div>
+          Generating...
+        `;
+      }
+
+      try {
+        // Get fresh JWT token
+        const token = await user.jwt();
+
+        const response = await fetch('/.netlify/functions/generate-from-url', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+          },
+          body: JSON.stringify({ url, category })
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(result.error || 'Failed to generate article');
+        }
+
+        showToast('Article generated and added to queue!');
+        closeModal();
+
+        // Refresh queue data
+        await loadSupabaseData();
+        renderSection('news-queue');
+
+      } catch (error) {
+        console.error('Generate from URL error:', error);
+        showToast('Error: ' + error.message, 'error');
+
+        // Re-enable button
+        if (generateBtn) {
+          generateBtn.disabled = false;
+          generateBtn.innerHTML = `
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px;">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+            Generate Article
+          `;
+        }
+      }
     }
 
     // =====================
