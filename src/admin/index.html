@@ -895,8 +895,7 @@
       }
     }
 
-    // Load config on page load
-    loadConfig();
+    // Config is loaded in the initialization block below
 
     // =====================
     // State Management
@@ -2710,6 +2709,8 @@
 
     // Initial render
     (async () => {
+      // Wait for config to load first
+      await loadConfig();
       await renderApp();
       if (netlifyIdentity.currentUser()) {
         await loadSupabaseData();
