@@ -8,6 +8,8 @@
   },
   "dependencies": {
     "@11ty/eleventy": "^2.0.1",
-    "luxon": "^3.4.4"
+    "@supabase/supabase-js": "^2.91.0",
+    "luxon": "^3.4.4",
+    "pg": "^8.17.2"
   }
 }

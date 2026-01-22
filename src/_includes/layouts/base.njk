@@ -26,6 +26,14 @@
 
   <!-- Netlify Identity Widget (for auth flows) -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <!-- Supabase Configuration (public keys only - safe for client) -->
+  {% if supabase.url %}
+  <script>
+    window.SUPABASE_URL = '{{ supabase.url }}';
+    window.SUPABASE_ANON_KEY = '{{ supabase.anonKey }}';
+  </script>
+  {% endif %}
 </head>
 <body>
   {% if showHeader %}

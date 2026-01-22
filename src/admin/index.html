@@ -313,6 +313,14 @@
     .badge-premium { background: var(--accent-subtle); color: var(--accent); }
     .badge-published { background: var(--success-bg); color: var(--success); }
     .badge-draft { background: rgba(234, 179, 8, 0.1); color: var(--warning); }
+    .badge-pending { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+    .badge-approved { background: var(--success-bg); color: var(--success); }
+    .badge-rejected { background: var(--error-bg); color: var(--error); }
+    .badge-rss { background: rgba(249, 115, 22, 0.1); color: #f97316; }
+    .badge-topic { background: rgba(139, 92, 246, 0.1); color: #8b5cf6; }
+    .badge-scheduled { background: rgba(6, 182, 212, 0.1); color: #06b6d4; }
+    .badge-active { background: var(--success-bg); color: var(--success); }
+    .badge-inactive { background: var(--bg-input); color: var(--text-muted); }
 
     .content-card-actions { display: flex; gap: 8px; opacity: 0; transition: var(--transition); }
     .content-card:hover .content-card-actions { opacity: 1; }
@@ -592,6 +600,251 @@
     .empty-state h3 { font-size: 18px; color: var(--text-primary); margin-bottom: 8px; }
     .empty-state p { color: var(--text-muted); margin-bottom: 20px; }
 
+    /* Filter Tabs */
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .filter-tab {
+      padding: 8px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      color: var(--text-secondary);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .filter-tab:hover {
+      background: var(--bg-hover);
+      border-color: var(--border-hover);
+    }
+
+    .filter-tab.active {
+      background: var(--accent-subtle);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .filter-tab .count {
+      margin-left: 6px;
+      background: var(--bg-input);
+      padding: 2px 6px;
+      border-radius: 8px;
+      font-size: 11px;
+    }
+
+    .filter-tab.active .count {
+      background: var(--accent);
+      color: white;
+    }
+
+    /* Queue Card */
+    .queue-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      margin-bottom: 12px;
+      transition: var(--transition);
+    }
+
+    .queue-card:hover {
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .queue-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .queue-card-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .queue-card-meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .queue-card-excerpt {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .queue-card-source {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .queue-card-source a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .queue-card-source a:hover {
+      text-decoration: underline;
+    }
+
+    .queue-card-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-approve { background: var(--success); color: white; }
+    .btn-approve:hover { background: #16a34a; }
+
+    .btn-reject { background: transparent; color: var(--error); border: 1px solid var(--error); }
+    .btn-reject:hover { background: var(--error-bg); }
+
+    /* Source Card */
+    .source-card {
+      display: grid;
+      grid-template-columns: auto 1fr auto auto;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      transition: var(--transition);
+    }
+
+    .source-card:hover {
+      background: var(--bg-hover);
+      border-color: var(--border-hover);
+    }
+
+    .source-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .source-icon.rss { background: rgba(249, 115, 22, 0.1); }
+    .source-icon.topic { background: rgba(139, 92, 246, 0.1); }
+    .source-icon.scheduled { background: rgba(6, 182, 212, 0.1); }
+
+    .source-info h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+
+    .source-info p {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Toggle Switch */
+    .toggle {
+      position: relative;
+      width: 44px;
+      height: 24px;
+    }
+
+    .toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      transition: var(--transition);
+    }
+
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 2px;
+      bottom: 2px;
+      background: var(--text-muted);
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+
+    .toggle input:checked + .toggle-slider {
+      background: var(--accent-subtle);
+      border-color: var(--accent);
+    }
+
+    .toggle input:checked + .toggle-slider:before {
+      background: var(--accent);
+      transform: translateX(20px);
+    }
+
+    /* Loading State */
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px;
+    }
+
+    .loading-spinner {
+      width: 32px;
+      height: 32px;
+      border: 3px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* SEO Fields Group */
+    .seo-fields {
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-top: 8px;
+    }
+
+    .seo-fields-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+
     /* Responsive */
     @media (max-width: 1024px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
 
@@ -609,12 +862,50 @@
   <div id="modal-root"></div>
   <div class="toast-container" id="toast-container"></div>
 
+  <script src="/js/news-api.js"></script>
   <script>
+    // =====================
+    // Supabase Configuration
+    // =====================
+    // Loaded from API or set manually
+    let SUPABASE_URL = window.SUPABASE_URL || '';
+    let SUPABASE_ANON_KEY = window.SUPABASE_ANON_KEY || '';
+    let SUPABASE_SERVICE_KEY = window.SUPABASE_SERVICE_KEY || '';
+
+    // Load configuration from API
+    async function loadConfig() {
+      try {
+        const response = await fetch('/api/config');
+        if (response.ok) {
+          const config = await response.json();
+          if (config.supabase) {
+            SUPABASE_URL = config.supabase.url || SUPABASE_URL;
+            SUPABASE_ANON_KEY = config.supabase.anonKey || SUPABASE_ANON_KEY;
+            // Service key should be passed separately for security
+          }
+        }
+      } catch (error) {
+        console.log('Could not load config from API, using defaults');
+      }
+
+      // Initialize NewsAPI with anon key (for reads)
+      // Service key operations will use the anon key with RLS
+      if (SUPABASE_URL && SUPABASE_ANON_KEY) {
+        NewsAPI.init(SUPABASE_URL, SUPABASE_ANON_KEY);
+      }
+    }
+
+    // Load config on page load
+    loadConfig();
+
     // =====================
     // State Management
     // =====================
     let currentSection = 'dashboard';
     let currentUser = null;
+    let queueFilter = 'pending';
+    let sourcesFilter = 'all';
+    let isLoading = false;
 
     // Sample data (in production, this would come from the Git repository)
     let appData = {
@@ -632,8 +923,46 @@
       settings: {
         heroHeadline: 'ACADEMY',
         heroSubhead: 'Master AI skills with expert-led courses'
-      }
+      },
+      // Supabase data
+      newsQueue: [],
+      publishedNews: [],
+      sources: [],
+      generationSettings: {}
     };
+
+    // =====================
+    // Supabase Data Loading
+    // =====================
+    async function loadSupabaseData() {
+      if (!SUPABASE_URL || !SUPABASE_SERVICE_KEY) {
+        console.warn('Supabase not configured. Using sample data.');
+        return;
+      }
+
+      try {
+        isLoading = true;
+
+        // Load queue, published articles, and sources in parallel
+        const [queue, published, sources, settings] = await Promise.all([
+          NewsAPI.getQueuedArticles('all'),
+          NewsAPI.getArticles({ limit: 100 }),
+          NewsAPI.getSources(),
+          NewsAPI.getSettings()
+        ]);
+
+        appData.newsQueue = queue || [];
+        appData.publishedNews = published || [];
+        appData.sources = sources || [];
+        appData.generationSettings = settings || {};
+
+        isLoading = false;
+      } catch (error) {
+        console.error('Error loading Supabase data:', error);
+        isLoading = false;
+        showToast('Error loading data from Supabase', 'error');
+      }
+    }
 
     // =====================
     // Toast Notifications
@@ -1129,6 +1458,36 @@
               </ul>
             </div>
             <div class="sidebar-section">
+              <div class="sidebar-label">AI News System</div>
+              <ul class="sidebar-nav">
+                <li class="sidebar-nav-item ${currentSection === 'news-queue' ? 'active' : ''}" onclick="navigateTo('news-queue')">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                    <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
+                  </svg>
+                  <span>News Queue</span>
+                  <span class="count">${appData.newsQueue.filter(q => q.status === 'pending').length}</span>
+                </li>
+                <li class="sidebar-nav-item ${currentSection === 'published-news' ? 'active' : ''}" onclick="navigateTo('published-news')">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                  </svg>
+                  <span>Published</span>
+                  <span class="count">${appData.publishedNews.length}</span>
+                </li>
+                <li class="sidebar-nav-item ${currentSection === 'sources' ? 'active' : ''}" onclick="navigateTo('sources')">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="2" y1="12" x2="22" y2="12"/>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                  </svg>
+                  <span>Sources</span>
+                  <span class="count">${appData.sources.length}</span>
+                </li>
+              </ul>
+            </div>
+            <div class="sidebar-section">
               <div class="sidebar-label">Settings</div>
               <ul class="sidebar-nav">
                 <li class="sidebar-nav-item ${currentSection === 'settings' ? 'active' : ''}" onclick="navigateTo('settings')">
@@ -1168,6 +1527,9 @@
         case 'courses': main.innerHTML = renderCoursesContent(); break;
         case 'lessons': main.innerHTML = renderLessonsContent(); break;
         case 'news': main.innerHTML = renderNewsContent(); break;
+        case 'news-queue': main.innerHTML = renderNewsQueueContent(); break;
+        case 'published-news': main.innerHTML = renderPublishedNewsContent(); break;
+        case 'sources': main.innerHTML = renderSourcesContent(); break;
         case 'settings': main.innerHTML = renderSettingsContent(); break;
       }
     }
@@ -1386,11 +1748,830 @@
       `;
     }
 
+    // =====================
+    // News Queue Functions
+    // =====================
+    function renderNewsQueueContent() {
+      const pending = appData.newsQueue.filter(q => q.status === 'pending');
+      const approved = appData.newsQueue.filter(q => q.status === 'approved');
+      const rejected = appData.newsQueue.filter(q => q.status === 'rejected');
+
+      let filtered = appData.newsQueue;
+      if (queueFilter !== 'all') {
+        filtered = appData.newsQueue.filter(q => q.status === queueFilter);
+      }
+
+      if (!SUPABASE_URL) {
+        return `
+          <div class="content-header">
+            <div>
+              <h1 class="content-title">News Queue</h1>
+              <p class="content-subtitle">AI-generated articles pending review</p>
+            </div>
+          </div>
+          <div class="empty-state">
+            <div class="empty-state-icon">⚙️</div>
+            <h3>Supabase Not Configured</h3>
+            <p>Add your Supabase credentials to enable the AI news system.</p>
+            <div style="text-align: left; background: var(--bg-card); padding: 20px; border-radius: var(--radius-md); margin-top: 20px; max-width: 400px; margin-left: auto; margin-right: auto;">
+              <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">Add to your HTML or Netlify env:</p>
+              <code style="font-size: 11px; color: var(--accent);">
+                window.SUPABASE_URL = 'your-url';<br>
+                window.SUPABASE_SERVICE_KEY = 'your-key';
+              </code>
+            </div>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="content-header">
+          <div>
+            <h1 class="content-title">News Queue</h1>
+            <p class="content-subtitle">AI-generated articles pending review</p>
+          </div>
+          <button class="btn btn-secondary" onclick="loadSupabaseData().then(() => renderSection('news-queue'))">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
+              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+            </svg>
+            Refresh
+          </button>
+        </div>
+
+        <div class="filter-tabs">
+          <button class="filter-tab ${queueFilter === 'all' ? 'active' : ''}" onclick="queueFilter='all'; renderSection('news-queue')">
+            All <span class="count">${appData.newsQueue.length}</span>
+          </button>
+          <button class="filter-tab ${queueFilter === 'pending' ? 'active' : ''}" onclick="queueFilter='pending'; renderSection('news-queue')">
+            Pending <span class="count">${pending.length}</span>
+          </button>
+          <button class="filter-tab ${queueFilter === 'approved' ? 'active' : ''}" onclick="queueFilter='approved'; renderSection('news-queue')">
+            Approved <span class="count">${approved.length}</span>
+          </button>
+          <button class="filter-tab ${queueFilter === 'rejected' ? 'active' : ''}" onclick="queueFilter='rejected'; renderSection('news-queue')">
+            Rejected <span class="count">${rejected.length}</span>
+          </button>
+        </div>
+
+        ${isLoading ? `
+          <div class="loading">
+            <div class="loading-spinner"></div>
+          </div>
+        ` : filtered.length === 0 ? `
+          <div class="empty-state">
+            <div class="empty-state-icon">📋</div>
+            <h3>No ${queueFilter === 'all' ? '' : queueFilter} articles</h3>
+            <p>${queueFilter === 'pending' ? 'New AI-generated articles will appear here for review.' : 'No articles with this status.'}</p>
+          </div>
+        ` : `
+          <div class="content-list">
+            ${filtered.map(article => `
+              <div class="queue-card">
+                <div class="queue-card-header">
+                  <div>
+                    <h3 class="queue-card-title">${article.title}</h3>
+                    <div class="queue-card-meta">
+                      <span class="badge badge-${article.status}">${article.status}</span>
+                      <span class="badge badge-${article.source_type}">${article.source_type}</span>
+                      <span class="badge badge-category">${article.category}</span>
+                    </div>
+                  </div>
+                  <span style="font-size: 12px; color: var(--text-muted);">
+                    ${article.generated_at ? new Date(article.generated_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : ''}
+                  </span>
+                </div>
+                <p class="queue-card-excerpt">${article.excerpt || ''}</p>
+                ${article.source_url ? `
+                  <p class="queue-card-source">
+                    Source: <a href="${article.source_url}" target="_blank">${article.source_title || article.source_url}</a>
+                  </p>
+                ` : ''}
+                <div class="queue-card-actions">
+                  ${article.status === 'pending' ? `
+                    <button class="btn btn-approve" onclick="approveQueuedArticle('${article.id}')">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                      Approve
+                    </button>
+                    <button class="btn btn-reject" onclick="rejectQueuedArticle('${article.id}')">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                      Reject
+                    </button>
+                  ` : ''}
+                  <button class="btn btn-secondary" onclick="openQueueEditor('${article.id}')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                    Edit
+                  </button>
+                  <button class="btn btn-ghost" onclick="previewQueuedArticle('${article.id}')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    Preview
+                  </button>
+                  <button class="btn btn-ghost" style="color: var(--error);" onclick="deleteQueuedArticle('${article.id}')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                  </button>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `}
+      `;
+    }
+
+    function openQueueEditor(id) {
+      const article = appData.newsQueue.find(a => a.id === id);
+      if (!article) return;
+
+      showModal(`
+        <div class="modal" style="max-width: 800px;">
+          <div class="modal-header">
+            <h2 class="modal-title">Edit Queued Article</h2>
+            <button class="modal-close" onclick="closeModal()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+          </div>
+          <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
+            <div class="form-group">
+              <label class="form-label">Title</label>
+              <input type="text" class="form-input" id="queue-title" value="${article.title}">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Slug</label>
+                <input type="text" class="form-input" id="queue-slug" value="${article.slug}">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Category</label>
+                <select class="form-select" id="queue-category">
+                  <option value="AI" ${article.category === 'AI' ? 'selected' : ''}>AI</option>
+                  <option value="Tech" ${article.category === 'Tech' ? 'selected' : ''}>Tech</option>
+                  <option value="Web3" ${article.category === 'Web3' ? 'selected' : ''}>Web3</option>
+                  <option value="Industry" ${article.category === 'Industry' ? 'selected' : ''}>Industry</option>
+                  <option value="Tutorial" ${article.category === 'Tutorial' ? 'selected' : ''}>Tutorial</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Excerpt</label>
+              <textarea class="form-textarea" id="queue-excerpt" style="min-height: 80px;">${article.excerpt || ''}</textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Content (Markdown)</label>
+              <textarea class="form-textarea" id="queue-content" style="min-height: 300px;">${article.content || ''}</textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Thumbnail URL</label>
+              <input type="text" class="form-input" id="queue-thumbnail" value="${article.thumbnail || ''}" placeholder="/images/news/...">
+            </div>
+            <div class="seo-fields">
+              <div class="seo-fields-title">SEO Settings</div>
+              <div class="form-group">
+                <label class="form-label">SEO Title</label>
+                <input type="text" class="form-input" id="queue-seo-title" value="${article.seo_title || ''}" placeholder="Leave empty to use article title">
+              </div>
+              <div class="form-group">
+                <label class="form-label">SEO Description</label>
+                <textarea class="form-textarea" id="queue-seo-desc" style="min-height: 60px;" placeholder="Meta description for search engines">${article.seo_description || ''}</textarea>
+              </div>
+              <div class="form-group" style="margin-bottom: 0;">
+                <label class="form-label">SEO Keywords (comma-separated)</label>
+                <input type="text" class="form-input" id="queue-seo-keywords" value="${(article.seo_keywords || []).join(', ')}" placeholder="AI, technology, news">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+            ${article.status === 'pending' ? `
+              <button class="btn btn-reject" onclick="rejectQueuedArticle('${article.id}'); closeModal();">Reject</button>
+              <button class="btn btn-approve" onclick="saveQueuedArticle('${article.id}', true)">Save & Approve</button>
+            ` : ''}
+            <button class="btn btn-primary" onclick="saveQueuedArticle('${article.id}', false)">Save Changes</button>
+          </div>
+        </div>
+      `);
+    }
+
+    async function saveQueuedArticle(id, approve = false) {
+      const updates = {
+        title: document.getElementById('queue-title').value.trim(),
+        slug: document.getElementById('queue-slug').value.trim(),
+        category: document.getElementById('queue-category').value,
+        excerpt: document.getElementById('queue-excerpt').value.trim(),
+        content: document.getElementById('queue-content').value,
+        thumbnail: document.getElementById('queue-thumbnail').value.trim() || null,
+        seo_title: document.getElementById('queue-seo-title').value.trim() || null,
+        seo_description: document.getElementById('queue-seo-desc').value.trim() || null,
+        seo_keywords: document.getElementById('queue-seo-keywords').value.split(',').map(k => k.trim()).filter(Boolean)
+      };
+
+      if (!updates.title) {
+        showToast('Please enter a title', 'error');
+        return;
+      }
+
+      try {
+        await NewsAPI.updateQueuedArticle(id, updates);
+
+        if (approve) {
+          await NewsAPI.approveArticle(id);
+          showToast('Article approved and published!');
+        } else {
+          showToast('Article saved');
+        }
+
+        closeModal();
+        await loadSupabaseData();
+        renderSection('news-queue');
+      } catch (error) {
+        showToast('Error saving article: ' + error.message, 'error');
+      }
+    }
+
+    async function approveQueuedArticle(id) {
+      try {
+        await NewsAPI.approveArticle(id);
+        showToast('Article approved and published!');
+        await loadSupabaseData();
+        renderSection('news-queue');
+      } catch (error) {
+        showToast('Error approving article: ' + error.message, 'error');
+      }
+    }
+
+    async function rejectQueuedArticle(id) {
+      const note = prompt('Rejection note (optional):');
+      try {
+        await NewsAPI.rejectArticle(id, note || null);
+        showToast('Article rejected');
+        await loadSupabaseData();
+        renderSection('news-queue');
+      } catch (error) {
+        showToast('Error rejecting article: ' + error.message, 'error');
+      }
+    }
+
+    async function deleteQueuedArticle(id) {
+      showConfirmDialog(
+        'Delete Queued Article?',
+        'This will permanently delete this article from the queue.',
+        async () => {
+          try {
+            await NewsAPI.deleteQueuedArticle(id);
+            showToast('Article deleted');
+            await loadSupabaseData();
+            renderSection('news-queue');
+          } catch (error) {
+            showToast('Error deleting article: ' + error.message, 'error');
+          }
+        }
+      );
+    }
+
+    function previewQueuedArticle(id) {
+      const article = appData.newsQueue.find(a => a.id === id);
+      if (!article) return;
+
+      showModal(`
+        <div class="modal" style="max-width: 800px;">
+          <div class="modal-header">
+            <h2 class="modal-title">Article Preview</h2>
+            <button class="modal-close" onclick="closeModal()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+          </div>
+          <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
+            <div style="margin-bottom: 16px;">
+              <span class="badge badge-${article.category}" style="margin-right: 8px;">${article.category}</span>
+              <span style="font-size: 12px; color: var(--text-muted);">
+                ${article.generated_at ? new Date(article.generated_at).toLocaleDateString() : ''}
+              </span>
+            </div>
+            <h1 style="font-family: 'Oswald', sans-serif; font-size: 28px; color: var(--text-primary); margin-bottom: 12px;">${article.title}</h1>
+            <p style="font-size: 16px; color: var(--text-secondary); margin-bottom: 24px; line-height: 1.6;">${article.excerpt || ''}</p>
+            <div style="font-size: 14px; color: var(--text-secondary); line-height: 1.8; white-space: pre-wrap;">${article.content || ''}</div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeModal()">Close</button>
+            <button class="btn btn-primary" onclick="closeModal(); openQueueEditor('${article.id}')">Edit</button>
+          </div>
+        </div>
+      `);
+    }
+
+    // =====================
+    // Published News Functions
+    // =====================
+    function renderPublishedNewsContent() {
+      if (!SUPABASE_URL) {
+        return `
+          <div class="content-header">
+            <div>
+              <h1 class="content-title">Published News</h1>
+              <p class="content-subtitle">Articles live on your site</p>
+            </div>
+          </div>
+          <div class="empty-state">
+            <div class="empty-state-icon">⚙️</div>
+            <h3>Supabase Not Configured</h3>
+            <p>Add your Supabase credentials to view published articles.</p>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="content-header">
+          <div>
+            <h1 class="content-title">Published News</h1>
+            <p class="content-subtitle">${appData.publishedNews.length} articles live on your site</p>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn btn-secondary" onclick="loadSupabaseData().then(() => renderSection('published-news'))">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+              </svg>
+              Refresh
+            </button>
+            <button class="btn btn-primary" onclick="openPublishedNewsEditor()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              New Article
+            </button>
+          </div>
+        </div>
+
+        ${isLoading ? `
+          <div class="loading">
+            <div class="loading-spinner"></div>
+          </div>
+        ` : appData.publishedNews.length === 0 ? `
+          <div class="empty-state">
+            <div class="empty-state-icon">📰</div>
+            <h3>No published articles</h3>
+            <p>Approve articles from the queue or create one manually.</p>
+            <button class="btn btn-primary" onclick="openPublishedNewsEditor()">Create Article</button>
+          </div>
+        ` : `
+          <div class="content-list">
+            ${appData.publishedNews.map(article => `
+              <div class="content-card" onclick="openPublishedNewsEditor('${article.id}')">
+                <div class="content-card-thumb">📰</div>
+                <div class="content-card-info">
+                  <h3>${article.title}</h3>
+                  <p>${article.published_at ? new Date(article.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : ''} ${article.source_type ? '• ' + article.source_type : ''}</p>
+                </div>
+                <div class="content-card-meta">
+                  <span class="badge badge-category">${article.category}</span>
+                  <span class="badge badge-published">Published</span>
+                </div>
+                <div class="content-card-actions">
+                  <button class="action-btn" title="View" onclick="event.stopPropagation(); window.open('/news/${article.slug}/', '_blank')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  </button>
+                  <button class="action-btn" title="Edit" onclick="event.stopPropagation(); openPublishedNewsEditor('${article.id}')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                  </button>
+                  <button class="action-btn delete" title="Delete" onclick="event.stopPropagation(); deletePublishedArticle('${article.id}')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                  </button>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `}
+      `;
+    }
+
+    function openPublishedNewsEditor(id = null) {
+      const article = id ? appData.publishedNews.find(a => a.id === id) : null;
+      const isNew = !article;
+      const a = article || { title: '', slug: '', excerpt: '', category: 'AI', content: '', thumbnail: '', seo_title: '', seo_description: '', seo_keywords: [] };
+
+      showModal(`
+        <div class="modal" style="max-width: 800px;">
+          <div class="modal-header">
+            <h2 class="modal-title">${isNew ? 'New Article' : 'Edit Article'}</h2>
+            <button class="modal-close" onclick="closeModal()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+          </div>
+          <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
+            <div class="form-group">
+              <label class="form-label">Title</label>
+              <input type="text" class="form-input" id="pub-title" value="${a.title}">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Slug</label>
+                <input type="text" class="form-input" id="pub-slug" value="${a.slug}" placeholder="article-url-slug">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Category</label>
+                <select class="form-select" id="pub-category">
+                  <option value="AI" ${a.category === 'AI' ? 'selected' : ''}>AI</option>
+                  <option value="Tech" ${a.category === 'Tech' ? 'selected' : ''}>Tech</option>
+                  <option value="Web3" ${a.category === 'Web3' ? 'selected' : ''}>Web3</option>
+                  <option value="Industry" ${a.category === 'Industry' ? 'selected' : ''}>Industry</option>
+                  <option value="Tutorial" ${a.category === 'Tutorial' ? 'selected' : ''}>Tutorial</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Excerpt</label>
+              <textarea class="form-textarea" id="pub-excerpt" style="min-height: 80px;">${a.excerpt || ''}</textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Content (Markdown)</label>
+              <textarea class="form-textarea" id="pub-content" style="min-height: 300px;">${a.content || ''}</textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Thumbnail URL</label>
+              <input type="text" class="form-input" id="pub-thumbnail" value="${a.thumbnail || ''}" placeholder="/images/news/...">
+            </div>
+            <div class="seo-fields">
+              <div class="seo-fields-title">SEO Settings</div>
+              <div class="form-group">
+                <label class="form-label">SEO Title</label>
+                <input type="text" class="form-input" id="pub-seo-title" value="${a.seo_title || ''}">
+              </div>
+              <div class="form-group">
+                <label class="form-label">SEO Description</label>
+                <textarea class="form-textarea" id="pub-seo-desc" style="min-height: 60px;">${a.seo_description || ''}</textarea>
+              </div>
+              <div class="form-group" style="margin-bottom: 0;">
+                <label class="form-label">SEO Keywords</label>
+                <input type="text" class="form-input" id="pub-seo-keywords" value="${(a.seo_keywords || []).join(', ')}">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+            <button class="btn btn-primary" onclick="savePublishedArticle('${a.id || ''}')">
+              ${isNew ? 'Publish Article' : 'Save Changes'}
+            </button>
+          </div>
+        </div>
+      `);
+    }
+
+    async function savePublishedArticle(id) {
+      const data = {
+        title: document.getElementById('pub-title').value.trim(),
+        slug: document.getElementById('pub-slug').value.trim() || generateSlug(document.getElementById('pub-title').value),
+        category: document.getElementById('pub-category').value,
+        excerpt: document.getElementById('pub-excerpt').value.trim(),
+        content: document.getElementById('pub-content').value,
+        thumbnail: document.getElementById('pub-thumbnail').value.trim() || null,
+        seo_title: document.getElementById('pub-seo-title').value.trim() || null,
+        seo_description: document.getElementById('pub-seo-desc').value.trim() || null,
+        seo_keywords: document.getElementById('pub-seo-keywords').value.split(',').map(k => k.trim()).filter(Boolean)
+      };
+
+      if (!data.title) {
+        showToast('Please enter a title', 'error');
+        return;
+      }
+
+      try {
+        if (id) {
+          await NewsAPI.updateArticle(id, data);
+          showToast('Article updated');
+        } else {
+          await NewsAPI.createArticle(data);
+          showToast('Article published!');
+        }
+
+        closeModal();
+        await loadSupabaseData();
+        renderSection('published-news');
+      } catch (error) {
+        showToast('Error saving article: ' + error.message, 'error');
+      }
+    }
+
+    async function deletePublishedArticle(id) {
+      showConfirmDialog(
+        'Delete Article?',
+        'This will permanently delete this published article.',
+        async () => {
+          try {
+            await NewsAPI.deleteArticle(id);
+            showToast('Article deleted');
+            await loadSupabaseData();
+            renderSection('published-news');
+          } catch (error) {
+            showToast('Error deleting article: ' + error.message, 'error');
+          }
+        }
+      );
+    }
+
+    // =====================
+    // Sources Functions
+    // =====================
+    function renderSourcesContent() {
+      if (!SUPABASE_URL) {
+        return `
+          <div class="content-header">
+            <div>
+              <h1 class="content-title">Content Sources</h1>
+              <p class="content-subtitle">RSS feeds, topics, and scheduled themes</p>
+            </div>
+          </div>
+          <div class="empty-state">
+            <div class="empty-state-icon">⚙️</div>
+            <h3>Supabase Not Configured</h3>
+            <p>Add your Supabase credentials to manage content sources.</p>
+          </div>
+        `;
+      }
+
+      const rss = appData.sources.filter(s => s.type === 'rss');
+      const topics = appData.sources.filter(s => s.type === 'topic');
+      const scheduled = appData.sources.filter(s => s.type === 'scheduled');
+
+      let filtered = appData.sources;
+      if (sourcesFilter !== 'all') {
+        filtered = appData.sources.filter(s => s.type === sourcesFilter);
+      }
+
+      return `
+        <div class="content-header">
+          <div>
+            <h1 class="content-title">Content Sources</h1>
+            <p class="content-subtitle">RSS feeds, topics, and scheduled themes</p>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn btn-secondary" onclick="loadSupabaseData().then(() => renderSection('sources'))">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+              </svg>
+              Refresh
+            </button>
+            <button class="btn btn-primary" onclick="openSourceEditor()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Add Source
+            </button>
+          </div>
+        </div>
+
+        <div class="filter-tabs">
+          <button class="filter-tab ${sourcesFilter === 'all' ? 'active' : ''}" onclick="sourcesFilter='all'; renderSection('sources')">
+            All <span class="count">${appData.sources.length}</span>
+          </button>
+          <button class="filter-tab ${sourcesFilter === 'rss' ? 'active' : ''}" onclick="sourcesFilter='rss'; renderSection('sources')">
+            RSS Feeds <span class="count">${rss.length}</span>
+          </button>
+          <button class="filter-tab ${sourcesFilter === 'topic' ? 'active' : ''}" onclick="sourcesFilter='topic'; renderSection('sources')">
+            Topics <span class="count">${topics.length}</span>
+          </button>
+          <button class="filter-tab ${sourcesFilter === 'scheduled' ? 'active' : ''}" onclick="sourcesFilter='scheduled'; renderSection('sources')">
+            Scheduled <span class="count">${scheduled.length}</span>
+          </button>
+        </div>
+
+        ${isLoading ? `
+          <div class="loading">
+            <div class="loading-spinner"></div>
+          </div>
+        ` : filtered.length === 0 ? `
+          <div class="empty-state">
+            <div class="empty-state-icon">🌐</div>
+            <h3>No ${sourcesFilter === 'all' ? '' : sourcesFilter} sources</h3>
+            <p>Add content sources to power AI article generation.</p>
+            <button class="btn btn-primary" onclick="openSourceEditor()">Add Source</button>
+          </div>
+        ` : `
+          <div class="content-list">
+            ${filtered.map(source => `
+              <div class="source-card">
+                <div class="source-icon ${source.type}">
+                  ${source.type === 'rss' ? '📡' : source.type === 'topic' ? '💡' : '📅'}
+                </div>
+                <div class="source-info">
+                  <h3>${source.name}</h3>
+                  <p>${source.type === 'rss' ? source.url : source.type === 'scheduled' ? source.schedule_day + ': ' + (source.schedule_theme || '').substring(0, 50) + '...' : (source.topic_prompt || '').substring(0, 50) + '...'}</p>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <span class="badge badge-${source.type}">${source.type}</span>
+                  <span class="badge badge-category">${source.category || 'AI'}</span>
+                  <span class="badge badge-${source.active ? 'active' : 'inactive'}">${source.active ? 'Active' : 'Inactive'}</span>
+                </div>
+                <div style="display: flex; gap: 8px; align-items: center;">
+                  <label class="toggle">
+                    <input type="checkbox" ${source.active ? 'checked' : ''} onchange="toggleSource('${source.id}', this.checked)">
+                    <span class="toggle-slider"></span>
+                  </label>
+                  <button class="action-btn" title="Edit" onclick="openSourceEditor('${source.id}')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                  </button>
+                  <button class="action-btn delete" title="Delete" onclick="deleteSource('${source.id}')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                  </button>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `}
+      `;
+    }
+
+    function openSourceEditor(id = null) {
+      const source = id ? appData.sources.find(s => s.id === id) : null;
+      const isNew = !source;
+      const s = source || { name: '', type: 'rss', url: '', topic_prompt: '', schedule_day: 'monday', schedule_theme: '', category: 'AI', active: true };
+
+      showModal(`
+        <div class="modal">
+          <div class="modal-header">
+            <h2 class="modal-title">${isNew ? 'Add Source' : 'Edit Source'}</h2>
+            <button class="modal-close" onclick="closeModal()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Name</label>
+                <input type="text" class="form-input" id="source-name" value="${s.name}" placeholder="Source name">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Type</label>
+                <select class="form-select" id="source-type" onchange="updateSourceForm()">
+                  <option value="rss" ${s.type === 'rss' ? 'selected' : ''}>RSS Feed</option>
+                  <option value="topic" ${s.type === 'topic' ? 'selected' : ''}>Topic Prompt</option>
+                  <option value="scheduled" ${s.type === 'scheduled' ? 'selected' : ''}>Scheduled Theme</option>
+                </select>
+              </div>
+            </div>
+
+            <div id="source-rss-fields" style="display: ${s.type === 'rss' ? 'block' : 'none'};">
+              <div class="form-group">
+                <label class="form-label">RSS Feed URL</label>
+                <input type="text" class="form-input" id="source-url" value="${s.url || ''}" placeholder="https://example.com/feed.xml">
+              </div>
+            </div>
+
+            <div id="source-topic-fields" style="display: ${s.type === 'topic' ? 'block' : 'none'};">
+              <div class="form-group">
+                <label class="form-label">Topic Prompt</label>
+                <textarea class="form-textarea" id="source-topic" style="min-height: 100px;" placeholder="Describe the topic for AI to write about...">${s.topic_prompt || ''}</textarea>
+              </div>
+            </div>
+
+            <div id="source-scheduled-fields" style="display: ${s.type === 'scheduled' ? 'block' : 'none'};">
+              <div class="form-group">
+                <label class="form-label">Day of Week</label>
+                <select class="form-select" id="source-day">
+                  <option value="monday" ${s.schedule_day === 'monday' ? 'selected' : ''}>Monday</option>
+                  <option value="tuesday" ${s.schedule_day === 'tuesday' ? 'selected' : ''}>Tuesday</option>
+                  <option value="wednesday" ${s.schedule_day === 'wednesday' ? 'selected' : ''}>Wednesday</option>
+                  <option value="thursday" ${s.schedule_day === 'thursday' ? 'selected' : ''}>Thursday</option>
+                  <option value="friday" ${s.schedule_day === 'friday' ? 'selected' : ''}>Friday</option>
+                  <option value="saturday" ${s.schedule_day === 'saturday' ? 'selected' : ''}>Saturday</option>
+                  <option value="sunday" ${s.schedule_day === 'sunday' ? 'selected' : ''}>Sunday</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Theme Description</label>
+                <textarea class="form-textarea" id="source-theme" style="min-height: 100px;" placeholder="Describe the theme for this day...">${s.schedule_theme || ''}</textarea>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Default Category</label>
+                <select class="form-select" id="source-category">
+                  <option value="AI" ${s.category === 'AI' ? 'selected' : ''}>AI</option>
+                  <option value="Tech" ${s.category === 'Tech' ? 'selected' : ''}>Tech</option>
+                  <option value="Web3" ${s.category === 'Web3' ? 'selected' : ''}>Web3</option>
+                  <option value="Industry" ${s.category === 'Industry' ? 'selected' : ''}>Industry</option>
+                  <option value="Tutorial" ${s.category === 'Tutorial' ? 'selected' : ''}>Tutorial</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Status</label>
+                <label class="form-checkbox" style="margin-top: 12px;">
+                  <input type="checkbox" id="source-active" ${s.active ? 'checked' : ''}>
+                  <span>Active</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+            <button class="btn btn-primary" onclick="saveSource('${s.id || ''}')">
+              ${isNew ? 'Add Source' : 'Save Changes'}
+            </button>
+          </div>
+        </div>
+      `);
+    }
+
+    function updateSourceForm() {
+      const type = document.getElementById('source-type').value;
+      document.getElementById('source-rss-fields').style.display = type === 'rss' ? 'block' : 'none';
+      document.getElementById('source-topic-fields').style.display = type === 'topic' ? 'block' : 'none';
+      document.getElementById('source-scheduled-fields').style.display = type === 'scheduled' ? 'block' : 'none';
+    }
+
+    async function saveSource(id) {
+      const type = document.getElementById('source-type').value;
+      const data = {
+        name: document.getElementById('source-name').value.trim(),
+        type: type,
+        category: document.getElementById('source-category').value,
+        active: document.getElementById('source-active').checked,
+        url: type === 'rss' ? document.getElementById('source-url').value.trim() : null,
+        topic_prompt: type === 'topic' ? document.getElementById('source-topic').value.trim() : null,
+        schedule_day: type === 'scheduled' ? document.getElementById('source-day').value : null,
+        schedule_theme: type === 'scheduled' ? document.getElementById('source-theme').value.trim() : null
+      };
+
+      if (!data.name) {
+        showToast('Please enter a source name', 'error');
+        return;
+      }
+
+      if (type === 'rss' && !data.url) {
+        showToast('Please enter an RSS URL', 'error');
+        return;
+      }
+
+      try {
+        if (id) {
+          await NewsAPI.updateSource(id, data);
+          showToast('Source updated');
+        } else {
+          await NewsAPI.createSource(data);
+          showToast('Source added!');
+        }
+
+        closeModal();
+        await loadSupabaseData();
+        renderSection('sources');
+      } catch (error) {
+        showToast('Error saving source: ' + error.message, 'error');
+      }
+    }
+
+    async function toggleSource(id, active) {
+      try {
+        await NewsAPI.toggleSource(id, active);
+        // Update local state
+        const source = appData.sources.find(s => s.id === id);
+        if (source) source.active = active;
+        showToast(active ? 'Source enabled' : 'Source disabled');
+      } catch (error) {
+        showToast('Error updating source: ' + error.message, 'error');
+        // Reload to reset state
+        await loadSupabaseData();
+        renderSection('sources');
+      }
+    }
+
+    async function deleteSource(id) {
+      showConfirmDialog(
+        'Delete Source?',
+        'This will permanently delete this content source.',
+        async () => {
+          try {
+            await NewsAPI.deleteSource(id);
+            showToast('Source deleted');
+            await loadSupabaseData();
+            renderSection('sources');
+          } catch (error) {
+            showToast('Error deleting source: ' + error.message, 'error');
+          }
+        }
+      );
+    }
+
     // Initialize
-    netlifyIdentity.on('init', () => renderApp());
-    netlifyIdentity.on('login', () => renderApp());
+    netlifyIdentity.on('init', async () => {
+      await renderApp();
+    });
+    netlifyIdentity.on('login', async () => {
+      await loadSupabaseData();
+      await renderApp();
+    });
     netlifyIdentity.on('logout', () => renderApp());
-    renderApp();
+
+    // Initial render
+    (async () => {
+      await renderApp();
+      if (netlifyIdentity.currentUser()) {
+        await loadSupabaseData();
+        renderSection(currentSection);
+      }
+    })();
   </script>
 </body>
 </html>

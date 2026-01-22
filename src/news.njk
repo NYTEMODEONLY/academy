@@ -26,19 +26,240 @@ permalink: /news/
       <button class="filter-pill" data-filter="Tutorial">Tutorial</button>
     </div>
 
-    <!-- News Grid -->
-    <div class="grid grid-3">
-      {% for article in collections.news %}
-      <div data-category="{{ article.data.category }}">
-        {% include "partials/news-card.njk" %}
+    <!-- News Grid - Will be populated dynamically -->
+    <div class="grid grid-3" id="news-grid">
+      <!-- Loading state -->
+      <div class="news-loading" id="news-loading" style="grid-column: 1 / -1; text-align: center; padding: 60px 0;">
+        <div style="width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 16px;"></div>
+        <p class="subhead">Loading articles...</p>
       </div>
-      {% endfor %}
+
+      <!-- Static fallback articles from markdown (SSG) -->
+      <template id="static-articles">
+        {% for article in collections.news %}
+        <div data-category="{{ article.data.category }}" data-source="static" data-date="{{ article.data.date | date: '%Y-%m-%d' }}">
+          {% include "partials/news-card.njk" %}
+        </div>
+        {% endfor %}
+      </template>
     </div>
 
-    {% if collections.news.length == 0 %}
-    <div class="text-center" style="padding: 80px 0;">
+    <!-- Empty state -->
+    <div class="text-center" style="padding: 80px 0; display: none;" id="news-empty">
       <p class="subhead">No articles yet. Check back soon!</p>
     </div>
-    {% endif %}
   </div>
 </section>
+
+<style>
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.news-loading {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.news-loading.hidden {
+  opacity: 0;
+  display: none;
+}
+</style>
+
+<!-- Supabase News Loader -->
+<script src="/js/news-api.js"></script>
+<script>
+(function() {
+  // Supabase configuration - injected from environment or set inline
+  const SUPABASE_URL = window.SUPABASE_URL || '';
+  const SUPABASE_ANON_KEY = window.SUPABASE_ANON_KEY || '';
+
+  const grid = document.getElementById('news-grid');
+  const loading = document.getElementById('news-loading');
+  const empty = document.getElementById('news-empty');
+  const staticTemplate = document.getElementById('static-articles');
+
+  // Format date for display
+  function formatDate(dateStr) {
+    const date = new Date(dateStr);
+    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  }
+
+  // Create article card HTML
+  function createArticleCard(article) {
+    const thumbnail = article.thumbnail
+      ? `<img src="${article.thumbnail}" alt="${escapeHtml(article.title)}" class="news-card-image">`
+      : `<div class="news-card-image" style="background: linear-gradient(135deg, var(--bg-purple-start), var(--bg-purple-mid));"></div>`;
+
+    const dateStr = article.published_at || article.date;
+    const formattedDate = dateStr ? formatDate(dateStr) : '';
+
+    return `
+      <article class="news-card">
+        <a href="/news/${article.slug}/">
+          ${thumbnail}
+        </a>
+        <div class="news-card-body">
+          <div class="news-card-meta">
+            <span class="pill" style="padding: 4px 12px; font-size: 10px;">${escapeHtml(article.category)}</span>
+            <time>${formattedDate}</time>
+          </div>
+          <a href="/news/${article.slug}/">
+            <h3 class="news-card-title">${escapeHtml(article.title)}</h3>
+          </a>
+          <p class="news-card-excerpt">${escapeHtml(article.excerpt || '')}</p>
+          <a href="/news/${article.slug}/" class="news-card-link">Read More →</a>
+        </div>
+      </article>
+    `;
+  }
+
+  function escapeHtml(text) {
+    if (!text) return '';
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  // Render all articles
+  function renderArticles(articles) {
+    // Clear loading
+    loading.classList.add('hidden');
+
+    if (articles.length === 0) {
+      empty.style.display = 'block';
+      return;
+    }
+
+    // Sort by date (newest first)
+    articles.sort((a, b) => {
+      const dateA = new Date(a.published_at || a.date || 0);
+      const dateB = new Date(b.published_at || b.date || 0);
+      return dateB - dateA;
+    });
+
+    // Render cards
+    articles.forEach(article => {
+      const wrapper = document.createElement('div');
+      wrapper.setAttribute('data-category', article.category);
+      wrapper.innerHTML = createArticleCard(article);
+      grid.appendChild(wrapper);
+    });
+
+    // Re-initialize category filtering
+    initFiltering();
+  }
+
+  // Initialize category filtering
+  function initFiltering() {
+    const filterButtons = document.querySelectorAll('[data-filter]');
+    const cards = grid.querySelectorAll('[data-category]');
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+
+        // Update active state
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Filter cards
+        cards.forEach(card => {
+          if (filter === 'all' || card.dataset.category === filter) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+
+  // Load articles
+  async function loadArticles() {
+    // Get static articles from template
+    const staticArticles = [];
+    if (staticTemplate.content.children.length > 0) {
+      // Parse static articles (already rendered by 11ty)
+      const staticWrapper = document.createElement('div');
+      staticWrapper.appendChild(staticTemplate.content.cloneNode(true));
+
+      // Just append static content directly
+      Array.from(staticWrapper.children).forEach(child => {
+        grid.appendChild(child);
+      });
+    }
+
+    // Try to fetch from Supabase
+    if (SUPABASE_URL && SUPABASE_ANON_KEY) {
+      try {
+        NewsAPI.init(SUPABASE_URL, SUPABASE_ANON_KEY);
+        const supabaseArticles = await NewsAPI.getArticles({ limit: 50 });
+
+        if (supabaseArticles && supabaseArticles.length > 0) {
+          // Get slugs of static articles to avoid duplicates
+          const staticSlugs = new Set();
+          grid.querySelectorAll('[data-source="static"] a').forEach(a => {
+            const href = a.getAttribute('href');
+            if (href) {
+              const match = href.match(/\/news\/([^\/]+)\/?/);
+              if (match) staticSlugs.add(match[1]);
+            }
+          });
+
+          // Add Supabase articles that aren't duplicates
+          supabaseArticles.forEach(article => {
+            if (!staticSlugs.has(article.slug)) {
+              const wrapper = document.createElement('div');
+              wrapper.setAttribute('data-category', article.category);
+              wrapper.setAttribute('data-source', 'supabase');
+              wrapper.innerHTML = createArticleCard(article);
+              grid.appendChild(wrapper);
+            }
+          });
+        }
+      } catch (error) {
+        console.log('Supabase fetch failed, using static content only:', error.message);
+      }
+    }
+
+    // Hide loading
+    loading.classList.add('hidden');
+
+    // Check if any articles
+    const hasArticles = grid.querySelectorAll('[data-category]').length > 0;
+    if (!hasArticles) {
+      empty.style.display = 'block';
+    }
+
+    // Sort all cards by date
+    sortCards();
+
+    // Initialize filtering
+    initFiltering();
+  }
+
+  // Sort cards by date
+  function sortCards() {
+    const cards = Array.from(grid.querySelectorAll('[data-category]'));
+    cards.sort((a, b) => {
+      // Try to get date from time element or data attribute
+      const getDate = (el) => {
+        const time = el.querySelector('time');
+        if (time && time.textContent) {
+          return new Date(time.textContent);
+        }
+        return new Date(0);
+      };
+      return getDate(b) - getDate(a);
+    });
+
+    // Re-append in sorted order
+    cards.forEach(card => grid.appendChild(card));
+  }
+
+  // Run on page load
+  loadArticles();
+})();
+</script>

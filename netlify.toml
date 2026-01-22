@@ -1,16 +1,53 @@
 [build]
   command = "npm run build"
   publish = "_site"
+  functions = "netlify/functions"
 
 [build.environment]
   NODE_VERSION = "18"
 
+# Functions configuration
+[functions]
+  node_bundler = "esbuild"
+  directory = "netlify/functions"
+
+# Scheduled function for AI article generation
+# Runs daily at 8:00 AM UTC
+[functions."generate-articles"]
+  schedule = "0 8 * * *"
+
+# Edge Functions configuration
+[[edge_functions]]
+  path = "/news/*"
+  function = "article"
+  excludedPath = ["/news/", "/news/index.html"]
+
+# Security headers
 [[headers]]
   for = "/*"
   [headers.values]
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
 
+# Cache control for static assets
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Admin SPA routing
 [[redirects]]
   from = "/admin"
   to = "/admin/index.html"
@@ -20,3 +57,36 @@
   from = "/admin/*"
   to = "/admin/index.html"
   status = 200
+
+# API proxy for functions
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# Dynamic article routes - handled by Edge Function
+# Static news listing page takes precedence
+[[redirects]]
+  from = "/news/"
+  to = "/news/index.html"
+  status = 200
+
+# Catch-all for dynamic articles (Edge Function handles these)
+[[redirects]]
+  from = "/news/:slug"
+  to = "/news/:slug/"
+  status = 301
+  force = false
+
+# Context-specific settings for development
+[context.deploy-preview]
+  [context.deploy-preview.environment]
+    NODE_ENV = "development"
+
+[context.branch-deploy]
+  [context.branch-deploy.environment]
+    NODE_ENV = "development"
+
+[context.production]
+  [context.production.environment]
+    NODE_ENV = "production"
