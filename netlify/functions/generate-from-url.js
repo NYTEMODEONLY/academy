@@ -14,6 +14,15 @@ const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 const ADMIN_SECRET = process.env.ADMIN_SECRET || process.env.SUPABASE_SERVICE_KEY;
 
+// Log env var status on cold start
+console.log('Function cold start - env check:', {
+    hasSupabaseUrl: !!SUPABASE_URL,
+    hasServiceKey: !!SUPABASE_SERVICE_KEY,
+    hasAnthropicKey: !!ANTHROPIC_API_KEY,
+    anthropicKeyLength: ANTHROPIC_API_KEY ? ANTHROPIC_API_KEY.length : 0,
+    anthropicKeyStart: ANTHROPIC_API_KEY ? ANTHROPIC_API_KEY.substring(0, 12) : 'none'
+});
+
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
 
 const TONE_OF_VOICE = `You are writing as NYTEMODE - a confident, tech-forward voice that:
@@ -332,9 +341,19 @@ Respond in JSON format with these fields:
 
         if (!response.ok) {
             const errorBody = await response.text();
-            console.error(`Claude API error response: ${errorBody}`);
-            const error = JSON.parse(errorBody);
-            throw new Error(`Claude API error: ${error.error?.message || response.statusText}`);
+            console.error(`Claude API error response (first 500 chars): ${errorBody.substring(0, 500)}`);
+
+            // Check if response is HTML (error page) instead of JSON
+            if (errorBody.trim().startsWith('<')) {
+                throw new Error(`Claude API returned HTML error page (status ${response.status})`);
+            }
+
+            try {
+                const error = JSON.parse(errorBody);
+                throw new Error(error.error?.message || `Claude API error: ${response.statusText}`);
+            } catch (parseError) {
+                throw new Error(`Claude API error (status ${response.status}): ${errorBody.substring(0, 100)}`);
+            }
         }
 
         const data = await response.json();
