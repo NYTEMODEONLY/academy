@@ -6,6 +6,356 @@
   <meta name="robots" content="noindex" />
   <title>NYTEMODE Academy Admin</title>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <!-- Custom NYTEMODE Admin Theme -->
+  <style>
+    /* Import fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+    /* Root variables */
+    :root {
+      --bg-dark: #0c0c0c;
+      --bg-card: #151515;
+      --bg-input: #1a1a1a;
+      --accent: #9d6ece;
+      --accent-hover: #b87dd4;
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.7);
+      --text-muted: rgba(255, 255, 255, 0.4);
+      --border: rgba(255, 255, 255, 0.1);
+      --success: #4ade80;
+      --error: #ef4444;
+    }
+
+    /* Base styles */
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+      background: var(--bg-dark) !important;
+      color: var(--text-primary) !important;
+    }
+
+    /* Main app container */
+    [class*="AppMainContainer"] {
+      background: var(--bg-dark) !important;
+    }
+
+    /* Header/Toolbar */
+    [class*="AppHeader"],
+    header {
+      background: var(--bg-card) !important;
+      border-bottom: 1px solid var(--border) !important;
+    }
+
+    /* Sidebar */
+    [class*="Sidebar"],
+    aside {
+      background: var(--bg-card) !important;
+      border-right: 1px solid var(--border) !important;
+    }
+
+    [class*="SidebarNavLink"],
+    aside a {
+      color: var(--text-secondary) !important;
+    }
+
+    [class*="SidebarNavLink"]:hover,
+    aside a:hover {
+      color: var(--text-primary) !important;
+      background: rgba(157, 110, 206, 0.1) !important;
+    }
+
+    [class*="SidebarNavLink"][class*="active"],
+    aside a.active {
+      color: var(--accent) !important;
+      background: rgba(157, 110, 206, 0.15) !important;
+    }
+
+    /* Cards and panels */
+    [class*="Card"],
+    [class*="Panel"],
+    [class*="EditorContainer"],
+    [class*="PreviewPane"] {
+      background: var(--bg-card) !important;
+      border: 1px solid var(--border) !important;
+      border-radius: 12px !important;
+    }
+
+    /* Entry cards in list */
+    [class*="ListCard"],
+    [class*="EntryCard"] {
+      background: var(--bg-card) !important;
+      border: 1px solid var(--border) !important;
+      border-radius: 8px !important;
+      transition: all 0.2s ease !important;
+    }
+
+    [class*="ListCard"]:hover,
+    [class*="EntryCard"]:hover {
+      border-color: var(--accent) !important;
+      transform: translateY(-2px) !important;
+    }
+
+    /* Inputs and textareas */
+    input,
+    textarea,
+    select,
+    [class*="Input"],
+    [class*="Textarea"],
+    [class*="Select"] {
+      background: var(--bg-input) !important;
+      border: 1px solid var(--border) !important;
+      border-radius: 8px !important;
+      color: var(--text-primary) !important;
+      padding: 12px 16px !important;
+      font-family: 'Inter', sans-serif !important;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus,
+    [class*="Input"]:focus,
+    [class*="Textarea"]:focus {
+      border-color: var(--accent) !important;
+      outline: none !important;
+      box-shadow: 0 0 0 3px rgba(157, 110, 206, 0.2) !important;
+    }
+
+    /* Labels */
+    label,
+    [class*="Label"],
+    [class*="FieldLabel"] {
+      color: var(--text-secondary) !important;
+      font-weight: 500 !important;
+      font-size: 12px !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.05em !important;
+    }
+
+    /* Buttons */
+    button,
+    [class*="Button"] {
+      font-family: 'Inter', sans-serif !important;
+      font-weight: 500 !important;
+      border-radius: 8px !important;
+      transition: all 0.2s ease !important;
+    }
+
+    /* Primary buttons */
+    [class*="Button"][class*="primary"],
+    button[class*="primary"],
+    [class*="ToolbarButton"] {
+      background: var(--accent) !important;
+      color: white !important;
+      border: none !important;
+    }
+
+    [class*="Button"][class*="primary"]:hover,
+    button[class*="primary"]:hover {
+      background: var(--accent-hover) !important;
+    }
+
+    /* Secondary/ghost buttons */
+    [class*="Button"]:not([class*="primary"]),
+    button:not([class*="primary"]) {
+      background: transparent !important;
+      border: 1px solid var(--border) !important;
+      color: var(--text-primary) !important;
+    }
+
+    [class*="Button"]:not([class*="primary"]):hover,
+    button:not([class*="primary"]):hover {
+      border-color: var(--accent) !important;
+      color: var(--accent) !important;
+    }
+
+    /* Delete/danger buttons */
+    [class*="delete"],
+    [class*="Delete"],
+    button[class*="danger"] {
+      background: transparent !important;
+      border: 1px solid var(--error) !important;
+      color: var(--error) !important;
+    }
+
+    [class*="delete"]:hover,
+    [class*="Delete"]:hover {
+      background: var(--error) !important;
+      color: white !important;
+    }
+
+    /* Dropdown menus */
+    [class*="Dropdown"],
+    [class*="Menu"],
+    [class*="Popover"] {
+      background: var(--bg-card) !important;
+      border: 1px solid var(--border) !important;
+      border-radius: 8px !important;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5) !important;
+    }
+
+    /* Preview pane */
+    [class*="PreviewPane"] {
+      background: var(--bg-input) !important;
+    }
+
+    [class*="PreviewPane"] * {
+      color: var(--text-secondary) !important;
+    }
+
+    /* Collection header */
+    [class*="CollectionTop"],
+    [class*="CollectionMain"] h1,
+    [class*="CollectionMain"] h2 {
+      color: var(--text-primary) !important;
+    }
+
+    /* Scrollbars */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-dark);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--text-muted);
+    }
+
+    /* Status badges */
+    [class*="StatusBadge"],
+    [class*="status"] {
+      border-radius: 9999px !important;
+      font-size: 11px !important;
+      font-weight: 600 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.05em !important;
+    }
+
+    /* Published status */
+    [class*="published"],
+    [class*="Published"] {
+      background: rgba(74, 222, 128, 0.15) !important;
+      color: var(--success) !important;
+    }
+
+    /* Draft status */
+    [class*="draft"],
+    [class*="Draft"] {
+      background: rgba(157, 110, 206, 0.15) !important;
+      color: var(--accent) !important;
+    }
+
+    /* Modal overlays */
+    [class*="Modal"],
+    [class*="Dialog"] {
+      background: var(--bg-card) !important;
+      border: 1px solid var(--border) !important;
+      border-radius: 16px !important;
+    }
+
+    [class*="ModalOverlay"],
+    [class*="DialogOverlay"] {
+      background: rgba(0, 0, 0, 0.8) !important;
+    }
+
+    /* Editor toolbar */
+    [class*="EditorToolbar"],
+    [class*="Toolbar"] {
+      background: var(--bg-input) !important;
+      border-bottom: 1px solid var(--border) !important;
+    }
+
+    /* Markdown editor */
+    [class*="MarkdownControl"],
+    [class*="RichText"] {
+      background: var(--bg-input) !important;
+    }
+
+    /* Image widgets */
+    [class*="ImageControl"],
+    [class*="FileControl"] {
+      background: var(--bg-input) !important;
+      border: 2px dashed var(--border) !important;
+      border-radius: 12px !important;
+    }
+
+    [class*="ImageControl"]:hover,
+    [class*="FileControl"]:hover {
+      border-color: var(--accent) !important;
+    }
+
+    /* List widgets (for lessons, etc.) */
+    [class*="ListControl"] {
+      background: transparent !important;
+    }
+
+    [class*="ListItem"],
+    [class*="ObjectControl"] {
+      background: var(--bg-input) !important;
+      border: 1px solid var(--border) !important;
+      border-radius: 8px !important;
+      margin-bottom: 12px !important;
+      padding: 16px !important;
+    }
+
+    /* Toggle switches */
+    [class*="Toggle"],
+    [class*="Switch"] {
+      background: var(--bg-input) !important;
+    }
+
+    [class*="Toggle"][class*="checked"],
+    [class*="Switch"][class*="checked"] {
+      background: var(--accent) !important;
+    }
+
+    /* Links */
+    a {
+      color: var(--accent) !important;
+    }
+
+    a:hover {
+      color: var(--accent-hover) !important;
+    }
+
+    /* Loading states */
+    [class*="Loader"],
+    [class*="Spinner"] {
+      border-color: var(--border) !important;
+      border-top-color: var(--accent) !important;
+    }
+
+    /* Toast notifications */
+    [class*="Toast"],
+    [class*="Notification"] {
+      background: var(--bg-card) !important;
+      border: 1px solid var(--border) !important;
+      border-radius: 8px !important;
+    }
+
+    /* Media library */
+    [class*="MediaLibrary"] {
+      background: var(--bg-dark) !important;
+    }
+
+    [class*="MediaCard"] {
+      background: var(--bg-card) !important;
+      border: 1px solid var(--border) !important;
+      border-radius: 8px !important;
+    }
+
+    [class*="MediaCard"]:hover,
+    [class*="MediaCard"][class*="selected"] {
+      border-color: var(--accent) !important;
+    }
+  </style>
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
