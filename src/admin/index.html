@@ -28,6 +28,7 @@
       --success-bg: rgba(34, 197, 94, 0.1);
       --warning: #eab308;
       --error: #ef4444;
+      --error-bg: rgba(239, 68, 68, 0.1);
       --radius-sm: 6px;
       --radius-md: 10px;
       --radius-lg: 14px;
@@ -37,11 +38,7 @@
       --transition: 0.15s ease;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -53,7 +50,6 @@
       height: 100vh;
     }
 
-    /* App Layout */
     .app {
       display: grid;
       grid-template-columns: 260px 1fr;
@@ -79,10 +75,7 @@
       gap: 12px;
     }
 
-    .header-brand img {
-      height: 28px;
-      width: auto;
-    }
+    .header-brand img { height: 28px; width: auto; }
 
     .header-brand span {
       font-family: 'Oswald', sans-serif;
@@ -93,11 +86,7 @@
       color: var(--text-muted);
     }
 
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
+    .header-actions { display: flex; align-items: center; gap: 16px; }
 
     .header-user {
       display: flex;
@@ -110,9 +99,7 @@
       transition: var(--transition);
     }
 
-    .header-user:hover {
-      background: var(--bg-hover);
-    }
+    .header-user:hover { background: var(--bg-hover); }
 
     .header-user-avatar {
       width: 28px;
@@ -127,10 +114,7 @@
       color: white;
     }
 
-    .header-user-name {
-      font-size: 13px;
-      color: var(--text-primary);
-    }
+    .header-user-name { font-size: 13px; color: var(--text-primary); }
 
     /* Sidebar */
     .sidebar {
@@ -140,9 +124,7 @@
       overflow-y: auto;
     }
 
-    .sidebar-section {
-      margin-bottom: 24px;
-    }
+    .sidebar-section { margin-bottom: 24px; }
 
     .sidebar-label {
       font-size: 10px;
@@ -154,9 +136,7 @@
       margin-bottom: 8px;
     }
 
-    .sidebar-nav {
-      list-style: none;
-    }
+    .sidebar-nav { list-style: none; }
 
     .sidebar-nav-item {
       display: flex;
@@ -180,20 +160,9 @@
       border-left-color: var(--accent);
     }
 
-    .sidebar-nav-item svg {
-      width: 18px;
-      height: 18px;
-      opacity: 0.7;
-    }
-
-    .sidebar-nav-item.active svg {
-      opacity: 1;
-    }
-
-    .sidebar-nav-item span {
-      font-size: 14px;
-      font-weight: 500;
-    }
+    .sidebar-nav-item svg { width: 18px; height: 18px; opacity: 0.7; }
+    .sidebar-nav-item.active svg { opacity: 1; }
+    .sidebar-nav-item span { font-size: 14px; font-weight: 500; }
 
     .sidebar-nav-item .count {
       margin-left: auto;
@@ -205,10 +174,7 @@
       color: var(--text-muted);
     }
 
-    .sidebar-nav-item.active .count {
-      background: var(--accent);
-      color: white;
-    }
+    .sidebar-nav-item.active .count { background: var(--accent); color: white; }
 
     /* Main Content */
     .main {
@@ -217,7 +183,6 @@
       padding: 24px;
     }
 
-    /* Content Header */
     .content-header {
       display: flex;
       align-items: center;
@@ -233,11 +198,7 @@
       letter-spacing: -0.02em;
     }
 
-    .content-subtitle {
-      font-size: 14px;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
+    .content-subtitle { font-size: 14px; color: var(--text-muted); margin-top: 4px; }
 
     /* Buttons */
     .btn {
@@ -254,49 +215,23 @@
       font-family: inherit;
     }
 
-    .btn-primary {
-      background: var(--accent);
-      color: white;
-    }
+    .btn-primary { background: var(--accent); color: white; }
+    .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); box-shadow: var(--shadow-sm); }
 
-    .btn-primary:hover {
-      background: var(--accent-hover);
-      transform: translateY(-1px);
-      box-shadow: var(--shadow-sm);
-    }
+    .btn-secondary { background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border); }
+    .btn-secondary:hover { background: var(--bg-hover); border-color: var(--border-hover); }
 
-    .btn-secondary {
-      background: var(--bg-card);
-      color: var(--text-primary);
-      border: 1px solid var(--border);
-    }
+    .btn-ghost { background: transparent; color: var(--text-secondary); }
+    .btn-ghost:hover { background: var(--bg-hover); color: var(--text-primary); }
 
-    .btn-secondary:hover {
-      background: var(--bg-hover);
-      border-color: var(--border-hover);
-    }
+    .btn-danger { background: var(--error); color: white; }
+    .btn-danger:hover { background: #dc2626; }
 
-    .btn-ghost {
-      background: transparent;
-      color: var(--text-secondary);
-    }
-
-    .btn-ghost:hover {
-      background: var(--bg-hover);
-      color: var(--text-primary);
-    }
-
-    .btn svg {
-      width: 16px;
-      height: 16px;
-    }
+    .btn svg { width: 16px; height: 16px; }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
     /* Search */
-    .search-bar {
-      position: relative;
-      max-width: 400px;
-      margin-bottom: 20px;
-    }
+    .search-bar { position: relative; max-width: 400px; margin-bottom: 20px; }
 
     .search-bar input {
       width: 100%;
@@ -310,15 +245,8 @@
       transition: var(--transition);
     }
 
-    .search-bar input::placeholder {
-      color: var(--text-muted);
-    }
-
-    .search-bar input:focus {
-      outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px var(--accent-subtle);
-    }
+    .search-bar input::placeholder { color: var(--text-muted); }
+    .search-bar input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-subtle); }
 
     .search-bar svg {
       position: absolute;
@@ -331,11 +259,7 @@
     }
 
     /* Content List */
-    .content-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
+    .content-list { display: flex; flex-direction: column; gap: 12px; }
 
     .content-card {
       display: grid;
@@ -369,29 +293,10 @@
       font-size: 24px;
     }
 
-    .content-card-thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    .content-card-info h3 { font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+    .content-card-info p { font-size: 13px; color: var(--text-muted); }
 
-    .content-card-info h3 {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 4px;
-    }
-
-    .content-card-info p {
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-
-    .content-card-meta {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+    .content-card-meta { display: flex; align-items: center; gap: 12px; }
 
     .badge {
       display: inline-flex;
@@ -404,36 +309,13 @@
       letter-spacing: 0.03em;
     }
 
-    .badge-category {
-      background: var(--bg-input);
-      color: var(--text-secondary);
-    }
+    .badge-category { background: var(--bg-input); color: var(--text-secondary); }
+    .badge-premium { background: var(--accent-subtle); color: var(--accent); }
+    .badge-published { background: var(--success-bg); color: var(--success); }
+    .badge-draft { background: rgba(234, 179, 8, 0.1); color: var(--warning); }
 
-    .badge-premium {
-      background: var(--accent-subtle);
-      color: var(--accent);
-    }
-
-    .badge-published {
-      background: var(--success-bg);
-      color: var(--success);
-    }
-
-    .badge-draft {
-      background: rgba(234, 179, 8, 0.1);
-      color: var(--warning);
-    }
-
-    .content-card-actions {
-      display: flex;
-      gap: 8px;
-      opacity: 0;
-      transition: var(--transition);
-    }
-
-    .content-card:hover .content-card-actions {
-      opacity: 1;
-    }
+    .content-card-actions { display: flex; gap: 8px; opacity: 0; transition: var(--transition); }
+    .content-card:hover .content-card-actions { opacity: 1; }
 
     .action-btn {
       width: 36px;
@@ -449,53 +331,12 @@
       transition: var(--transition);
     }
 
-    .action-btn:hover {
-      background: var(--bg-hover);
-      color: var(--text-primary);
-      border-color: var(--border-hover);
-    }
-
-    .action-btn svg {
-      width: 16px;
-      height: 16px;
-    }
-
-    /* Empty State */
-    .empty-state {
-      text-align: center;
-      padding: 60px 20px;
-    }
-
-    .empty-state-icon {
-      width: 64px;
-      height: 64px;
-      margin: 0 auto 20px;
-      background: var(--bg-card);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
-    }
-
-    .empty-state h3 {
-      font-size: 18px;
-      color: var(--text-primary);
-      margin-bottom: 8px;
-    }
-
-    .empty-state p {
-      color: var(--text-muted);
-      margin-bottom: 20px;
-    }
+    .action-btn:hover { background: var(--bg-hover); color: var(--text-primary); border-color: var(--border-hover); }
+    .action-btn.delete:hover { background: var(--error-bg); color: var(--error); border-color: var(--error); }
+    .action-btn svg { width: 16px; height: 16px; }
 
     /* Stats Grid */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      margin-bottom: 32px;
-    }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
 
     .stat-card {
       background: var(--bg-card);
@@ -520,11 +361,7 @@
       color: var(--text-primary);
     }
 
-    .stat-card-change {
-      font-size: 12px;
-      color: var(--success);
-      margin-top: 4px;
-    }
+    .stat-card-change { font-size: 12px; color: var(--success); margin-top: 4px; }
 
     /* Login Screen */
     .login-screen {
@@ -546,70 +383,664 @@
       box-shadow: var(--shadow-lg);
     }
 
-    .login-card img {
-      height: 40px;
-      margin: 0 auto 24px;
+    .login-card img { height: 40px; margin: 0 auto 24px; }
+    .login-card h1 { font-family: 'Oswald', sans-serif; font-size: 24px; color: var(--text-primary); margin-bottom: 8px; }
+    .login-card p { color: var(--text-muted); margin-bottom: 32px; }
+    .login-card .btn { width: 100%; justify-content: center; padding: 14px 24px; font-size: 14px; }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      z-index: 1000;
+      padding: 40px 20px;
+      overflow-y: auto;
     }
 
-    .login-card h1 {
-      font-family: 'Oswald', sans-serif;
-      font-size: 24px;
-      color: var(--text-primary);
+    .modal {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 700px;
+      box-shadow: var(--shadow-lg);
+      animation: modalIn 0.2s ease;
+    }
+
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .modal-title { font-family: 'Oswald', sans-serif; font-size: 20px; color: var(--text-primary); }
+
+    .modal-close {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+    }
+
+    .modal-close:hover { background: var(--bg-hover); color: var(--text-primary); }
+    .modal-close svg { width: 20px; height: 20px; }
+
+    .modal-body { padding: 24px; }
+    .modal-footer { display: flex; justify-content: flex-end; gap: 12px; padding: 20px 24px; border-top: 1px solid var(--border); }
+
+    /* Form */
+    .form-group { margin-bottom: 20px; }
+
+    .form-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
       margin-bottom: 8px;
     }
 
-    .login-card p {
-      color: var(--text-muted);
-      margin-bottom: 32px;
+    .form-input,
+    .form-textarea,
+    .form-select {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      color: var(--text-primary);
+      font-size: 14px;
+      font-family: inherit;
+      transition: var(--transition);
     }
 
-    .login-card .btn {
-      width: 100%;
-      justify-content: center;
-      padding: 14px 24px;
-      font-size: 14px;
+    .form-input:focus,
+    .form-textarea:focus,
+    .form-select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-subtle);
     }
+
+    .form-textarea { min-height: 200px; resize: vertical; line-height: 1.6; }
+    .form-select { cursor: pointer; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .form-checkbox {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .form-checkbox input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    .form-checkbox span { font-size: 14px; color: var(--text-secondary); }
+
+    .form-hint { font-size: 12px; color: var(--text-muted); margin-top: 6px; }
+
+    /* Toast */
+    .toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .toast {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+      animation: toastIn 0.3s ease;
+      min-width: 300px;
+    }
+
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateX(100px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .toast.success { border-left: 3px solid var(--success); }
+    .toast.error { border-left: 3px solid var(--error); }
+    .toast.warning { border-left: 3px solid var(--warning); }
+
+    .toast-icon { width: 20px; height: 20px; }
+    .toast.success .toast-icon { color: var(--success); }
+    .toast.error .toast-icon { color: var(--error); }
+
+    .toast-message { font-size: 14px; color: var(--text-primary); }
+
+    /* Confirm Dialog */
+    .confirm-dialog {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .confirm-icon {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 20px;
+      background: var(--error-bg);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--error);
+    }
+
+    .confirm-icon svg { width: 28px; height: 28px; }
+    .confirm-title { font-family: 'Oswald', sans-serif; font-size: 20px; color: var(--text-primary); margin-bottom: 8px; }
+    .confirm-message { color: var(--text-muted); margin-bottom: 24px; }
+    .confirm-actions { display: flex; justify-content: center; gap: 12px; }
+
+    /* Empty State */
+    .empty-state { text-align: center; padding: 60px 20px; }
+
+    .empty-state-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 20px;
+      background: var(--bg-card);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+    }
+
+    .empty-state h3 { font-size: 18px; color: var(--text-primary); margin-bottom: 8px; }
+    .empty-state p { color: var(--text-muted); margin-bottom: 20px; }
 
     /* Responsive */
-    @media (max-width: 1024px) {
-      .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
+    @media (max-width: 1024px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
 
     @media (max-width: 768px) {
-      .app {
-        grid-template-columns: 1fr;
-      }
-
-      .sidebar {
-        display: none;
-      }
-
-      .stats-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .content-card {
-        grid-template-columns: 1fr;
-      }
+      .app { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .content-card { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
   <div id="app"></div>
+  <div id="modal-root"></div>
+  <div class="toast-container" id="toast-container"></div>
 
   <script>
-    // Check authentication
-    const user = netlifyIdentity.currentUser();
+    // =====================
+    // State Management
+    // =====================
+    let currentSection = 'dashboard';
+    let currentUser = null;
 
+    // Sample data (in production, this would come from the Git repository)
+    let appData = {
+      courses: [
+        { id: '1', title: 'Prompt Engineering 101', slug: 'prompt-engineering-101', description: 'Master the art of crafting effective prompts for AI systems', category: 'AI', premium: false, status: 'published', lessons: 3 }
+      ],
+      lessons: [
+        { id: '1', title: 'Introduction to Prompts', slug: 'introduction-to-prompts', courseId: '1', courseName: 'Prompt Engineering 101', duration: '15 min', premium: false, status: 'published', order: 1 },
+        { id: '2', title: 'Advanced Techniques', slug: 'advanced-techniques', courseId: '1', courseName: 'Prompt Engineering 101', duration: '20 min', premium: true, status: 'published', order: 2 },
+        { id: '3', title: 'Real-World Applications', slug: 'real-world-applications', courseId: '1', courseName: 'Prompt Engineering 101', duration: '25 min', premium: true, status: 'draft', order: 3 }
+      ],
+      news: [
+        { id: '1', title: 'GPT-5 Release: What You Need to Know', slug: 'gpt-5-release', excerpt: 'Everything you need to know about the latest GPT model', category: 'AI', status: 'published', date: '2026-01-15' }
+      ],
+      settings: {
+        heroHeadline: 'ACADEMY',
+        heroSubhead: 'Master AI skills with expert-led courses'
+      }
+    };
+
+    // =====================
+    // Toast Notifications
+    // =====================
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.innerHTML = `
+        <svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          ${type === 'success' ? '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>' : '<circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>'}
+        </svg>
+        <span class="toast-message">${message}</span>
+      `;
+      container.appendChild(toast);
+      setTimeout(() => toast.remove(), 4000);
+    }
+
+    // =====================
+    // Modal Functions
+    // =====================
+    function showModal(content) {
+      document.getElementById('modal-root').innerHTML = `
+        <div class="modal-overlay" onclick="if(event.target === this) closeModal()">
+          ${content}
+        </div>
+      `;
+    }
+
+    function closeModal() {
+      document.getElementById('modal-root').innerHTML = '';
+    }
+
+    function showConfirmDialog(title, message, onConfirm) {
+      showModal(`
+        <div class="confirm-dialog">
+          <div class="confirm-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+              <line x1="12" y1="9" x2="12" y2="13"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+          </div>
+          <h3 class="confirm-title">${title}</h3>
+          <p class="confirm-message">${message}</p>
+          <div class="confirm-actions">
+            <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+            <button class="btn btn-danger" onclick="(${onConfirm})(); closeModal();">Delete</button>
+          </div>
+        </div>
+      `);
+    }
+
+    // =====================
+    // Editor Modals
+    // =====================
+    function openCourseEditor(course = null) {
+      const isNew = !course;
+      const c = course || { title: '', slug: '', description: '', category: 'AI', premium: false };
+
+      showModal(`
+        <div class="modal">
+          <div class="modal-header">
+            <h2 class="modal-title">${isNew ? 'New Course' : 'Edit Course'}</h2>
+            <button class="modal-close" onclick="closeModal()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="form-label">Title</label>
+              <input type="text" class="form-input" id="course-title" value="${c.title}" placeholder="Enter course title">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Slug</label>
+              <input type="text" class="form-input" id="course-slug" value="${c.slug}" placeholder="course-url-slug">
+              <p class="form-hint">URL-friendly identifier (auto-generated from title if left empty)</p>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Description</label>
+              <textarea class="form-textarea" id="course-desc" placeholder="Describe what students will learn..." style="min-height: 100px;">${c.description || ''}</textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Category</label>
+                <select class="form-select" id="course-category">
+                  <option value="AI" ${c.category === 'AI' ? 'selected' : ''}>AI</option>
+                  <option value="Marketing" ${c.category === 'Marketing' ? 'selected' : ''}>Marketing</option>
+                  <option value="Web3" ${c.category === 'Web3' ? 'selected' : ''}>Web3</option>
+                  <option value="Creative" ${c.category === 'Creative' ? 'selected' : ''}>Creative</option>
+                  <option value="Tech" ${c.category === 'Tech' ? 'selected' : ''}>Tech</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Access</label>
+                <label class="form-checkbox" style="margin-top: 12px;">
+                  <input type="checkbox" id="course-premium" ${c.premium ? 'checked' : ''}>
+                  <span>Premium Only</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+            <button class="btn btn-primary" onclick="saveCourse('${c.id || ''}')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                <polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/>
+              </svg>
+              ${isNew ? 'Create Course' : 'Save Changes'}
+            </button>
+          </div>
+        </div>
+      `);
+    }
+
+    function openLessonEditor(lesson = null) {
+      const isNew = !lesson;
+      const l = lesson || { title: '', slug: '', courseId: '', courseName: '', duration: '', premium: false, content: '' };
+
+      showModal(`
+        <div class="modal">
+          <div class="modal-header">
+            <h2 class="modal-title">${isNew ? 'New Lesson' : 'Edit Lesson'}</h2>
+            <button class="modal-close" onclick="closeModal()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="form-label">Title</label>
+              <input type="text" class="form-input" id="lesson-title" value="${l.title}" placeholder="Enter lesson title">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Course</label>
+                <select class="form-select" id="lesson-course">
+                  ${appData.courses.map(c => `<option value="${c.id}" ${l.courseId === c.id ? 'selected' : ''}>${c.title}</option>`).join('')}
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Duration</label>
+                <input type="text" class="form-input" id="lesson-duration" value="${l.duration}" placeholder="e.g., 15 min">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Video URL (optional)</label>
+              <input type="text" class="form-input" id="lesson-video" value="${l.video || ''}" placeholder="YouTube or Vimeo embed URL">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Content (Markdown)</label>
+              <textarea class="form-textarea" id="lesson-content" placeholder="Write your lesson content in Markdown...">${l.content || ''}</textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-checkbox">
+                <input type="checkbox" id="lesson-premium" ${l.premium ? 'checked' : ''}>
+                <span>Premium Only</span>
+              </label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+            <button class="btn btn-primary" onclick="saveLesson('${l.id || ''}')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                <polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/>
+              </svg>
+              ${isNew ? 'Create Lesson' : 'Save Changes'}
+            </button>
+          </div>
+        </div>
+      `);
+    }
+
+    function openNewsEditor(article = null) {
+      const isNew = !article;
+      const a = article || { title: '', slug: '', excerpt: '', category: 'AI', content: '' };
+
+      showModal(`
+        <div class="modal">
+          <div class="modal-header">
+            <h2 class="modal-title">${isNew ? 'New Article' : 'Edit Article'}</h2>
+            <button class="modal-close" onclick="closeModal()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="form-label">Title</label>
+              <input type="text" class="form-input" id="news-title" value="${a.title}" placeholder="Enter article title">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Slug</label>
+              <input type="text" class="form-input" id="news-slug" value="${a.slug}" placeholder="article-url-slug">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Excerpt</label>
+              <textarea class="form-textarea" id="news-excerpt" style="min-height: 80px;" placeholder="Brief summary for previews...">${a.excerpt || ''}</textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Category</label>
+              <select class="form-select" id="news-category">
+                <option value="AI" ${a.category === 'AI' ? 'selected' : ''}>AI</option>
+                <option value="Tech" ${a.category === 'Tech' ? 'selected' : ''}>Tech</option>
+                <option value="Web3" ${a.category === 'Web3' ? 'selected' : ''}>Web3</option>
+                <option value="Industry" ${a.category === 'Industry' ? 'selected' : ''}>Industry</option>
+                <option value="Tutorial" ${a.category === 'Tutorial' ? 'selected' : ''}>Tutorial</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Content (Markdown)</label>
+              <textarea class="form-textarea" id="news-content" placeholder="Write your article in Markdown...">${a.content || ''}</textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+            <button class="btn btn-primary" onclick="saveNews('${a.id || ''}')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                <polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/>
+              </svg>
+              ${isNew ? 'Publish Article' : 'Save Changes'}
+            </button>
+          </div>
+        </div>
+      `);
+    }
+
+    // =====================
+    // Save Functions
+    // =====================
+    function generateSlug(title) {
+      return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    }
+
+    function saveCourse(id) {
+      const title = document.getElementById('course-title').value.trim();
+      const slug = document.getElementById('course-slug').value.trim() || generateSlug(title);
+      const description = document.getElementById('course-desc').value.trim();
+      const category = document.getElementById('course-category').value;
+      const premium = document.getElementById('course-premium').checked;
+
+      if (!title) {
+        showToast('Please enter a course title', 'error');
+        return;
+      }
+
+      if (id) {
+        // Update existing
+        const idx = appData.courses.findIndex(c => c.id === id);
+        if (idx !== -1) {
+          appData.courses[idx] = { ...appData.courses[idx], title, slug, description, category, premium };
+        }
+        showToast('Course updated successfully');
+      } else {
+        // Create new
+        const newCourse = {
+          id: Date.now().toString(),
+          title, slug, description, category, premium,
+          status: 'published',
+          lessons: 0
+        };
+        appData.courses.push(newCourse);
+        showToast('Course created successfully');
+      }
+
+      closeModal();
+      renderSection('courses');
+    }
+
+    function saveLesson(id) {
+      const title = document.getElementById('lesson-title').value.trim();
+      const courseId = document.getElementById('lesson-course').value;
+      const duration = document.getElementById('lesson-duration').value.trim();
+      const video = document.getElementById('lesson-video').value.trim();
+      const content = document.getElementById('lesson-content').value;
+      const premium = document.getElementById('lesson-premium').checked;
+
+      if (!title) {
+        showToast('Please enter a lesson title', 'error');
+        return;
+      }
+
+      const course = appData.courses.find(c => c.id === courseId);
+      const courseName = course ? course.title : '';
+
+      if (id) {
+        const idx = appData.lessons.findIndex(l => l.id === id);
+        if (idx !== -1) {
+          appData.lessons[idx] = { ...appData.lessons[idx], title, courseId, courseName, duration, video, content, premium };
+        }
+        showToast('Lesson updated successfully');
+      } else {
+        const newLesson = {
+          id: Date.now().toString(),
+          title,
+          slug: generateSlug(title),
+          courseId, courseName, duration, video, content, premium,
+          status: 'published',
+          order: appData.lessons.filter(l => l.courseId === courseId).length + 1
+        };
+        appData.lessons.push(newLesson);
+        showToast('Lesson created successfully');
+      }
+
+      closeModal();
+      renderSection('lessons');
+    }
+
+    function saveNews(id) {
+      const title = document.getElementById('news-title').value.trim();
+      const slug = document.getElementById('news-slug').value.trim() || generateSlug(title);
+      const excerpt = document.getElementById('news-excerpt').value.trim();
+      const category = document.getElementById('news-category').value;
+      const content = document.getElementById('news-content').value;
+
+      if (!title) {
+        showToast('Please enter an article title', 'error');
+        return;
+      }
+
+      if (id) {
+        const idx = appData.news.findIndex(n => n.id === id);
+        if (idx !== -1) {
+          appData.news[idx] = { ...appData.news[idx], title, slug, excerpt, category, content };
+        }
+        showToast('Article updated successfully');
+      } else {
+        const newArticle = {
+          id: Date.now().toString(),
+          title, slug, excerpt, category, content,
+          status: 'published',
+          date: new Date().toISOString().split('T')[0]
+        };
+        appData.news.push(newArticle);
+        showToast('Article published successfully');
+      }
+
+      closeModal();
+      renderSection('news');
+    }
+
+    function saveSettings() {
+      const headline = document.querySelector('#settings-headline')?.value.trim();
+      const subhead = document.querySelector('#settings-subhead')?.value.trim();
+
+      if (headline !== undefined) appData.settings.heroHeadline = headline;
+      if (subhead !== undefined) appData.settings.heroSubhead = subhead;
+
+      showToast('Settings saved successfully');
+    }
+
+    // =====================
+    // Delete Functions
+    // =====================
+    function deleteCourse(id) {
+      showConfirmDialog(
+        'Delete Course?',
+        'This will permanently delete this course and cannot be undone.',
+        () => {
+          appData.courses = appData.courses.filter(c => c.id !== id);
+          appData.lessons = appData.lessons.filter(l => l.courseId !== id);
+          showToast('Course deleted');
+          renderSection('courses');
+        }
+      );
+    }
+
+    function deleteLesson(id) {
+      showConfirmDialog(
+        'Delete Lesson?',
+        'This will permanently delete this lesson and cannot be undone.',
+        () => {
+          appData.lessons = appData.lessons.filter(l => l.id !== id);
+          showToast('Lesson deleted');
+          renderSection('lessons');
+        }
+      );
+    }
+
+    function deleteNews(id) {
+      showConfirmDialog(
+        'Delete Article?',
+        'This will permanently delete this article and cannot be undone.',
+        () => {
+          appData.news = appData.news.filter(n => n.id !== id);
+          showToast('Article deleted');
+          renderSection('news');
+        }
+      );
+    }
+
+    // =====================
+    // Render Functions
+    // =====================
     function renderApp() {
-      const currentUser = netlifyIdentity.currentUser();
-
+      currentUser = netlifyIdentity.currentUser();
       if (!currentUser) {
         renderLogin();
       } else {
-        renderDashboard(currentUser);
+        renderDashboard();
       }
     }
 
@@ -623,8 +1054,7 @@
             <button class="btn btn-primary" onclick="netlifyIdentity.open('login')">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
-                <polyline points="10 17 15 12 10 7"/>
-                <line x1="15" y1="12" x2="3" y2="12"/>
+                <polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/>
               </svg>
               Sign In
             </button>
@@ -633,8 +1063,8 @@
       `;
     }
 
-    function renderDashboard(user) {
-      const initials = user.user_metadata?.full_name?.split(' ').map(n => n[0]).join('') || user.email[0].toUpperCase();
+    function renderDashboard() {
+      const initials = currentUser.user_metadata?.full_name?.split(' ').map(n => n[0]).join('') || currentUser.email[0].toUpperCase();
 
       document.getElementById('app').innerHTML = `
         <div class="app">
@@ -647,14 +1077,13 @@
               <button class="btn btn-ghost" onclick="window.open('/', '_blank')">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                  <polyline points="15 3 21 3 21 9"/>
-                  <line x1="10" y1="14" x2="21" y2="3"/>
+                  <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
                 </svg>
                 View Site
               </button>
-              <div class="header-user" onclick="toggleUserMenu()">
+              <div class="header-user">
                 <div class="header-user-avatar">${initials}</div>
-                <span class="header-user-name">${user.user_metadata?.full_name || user.email}</span>
+                <span class="header-user-name">${currentUser.user_metadata?.full_name || currentUser.email}</span>
               </div>
             </div>
           </header>
@@ -663,50 +1092,46 @@
             <div class="sidebar-section">
               <div class="sidebar-label">Overview</div>
               <ul class="sidebar-nav">
-                <li class="sidebar-nav-item active" onclick="showSection('dashboard')">
+                <li class="sidebar-nav-item ${currentSection === 'dashboard' ? 'active' : ''}" onclick="navigateTo('dashboard')">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="3" y="3" width="7" height="9"/>
-                    <rect x="14" y="3" width="7" height="5"/>
-                    <rect x="14" y="12" width="7" height="9"/>
-                    <rect x="3" y="16" width="7" height="5"/>
+                    <rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/>
+                    <rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/>
                   </svg>
                   <span>Dashboard</span>
                 </li>
               </ul>
             </div>
-
             <div class="sidebar-section">
               <div class="sidebar-label">Content</div>
               <ul class="sidebar-nav">
-                <li class="sidebar-nav-item" onclick="showSection('courses')">
+                <li class="sidebar-nav-item ${currentSection === 'courses' ? 'active' : ''}" onclick="navigateTo('courses')">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
                     <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
                   </svg>
                   <span>Courses</span>
-                  <span class="count">3</span>
+                  <span class="count">${appData.courses.length}</span>
                 </li>
-                <li class="sidebar-nav-item" onclick="showSection('lessons')">
+                <li class="sidebar-nav-item ${currentSection === 'lessons' ? 'active' : ''}" onclick="navigateTo('lessons')">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <polygon points="5 3 19 12 5 21 5 3"/>
                   </svg>
                   <span>Lessons</span>
-                  <span class="count">12</span>
+                  <span class="count">${appData.lessons.length}</span>
                 </li>
-                <li class="sidebar-nav-item" onclick="showSection('news')">
+                <li class="sidebar-nav-item ${currentSection === 'news' ? 'active' : ''}" onclick="navigateTo('news')">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M19 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1m2 13a2 2 0 0 1-2-2V7m2 13a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2"/>
                   </svg>
                   <span>News</span>
-                  <span class="count">5</span>
+                  <span class="count">${appData.news.length}</span>
                 </li>
               </ul>
             </div>
-
             <div class="sidebar-section">
               <div class="sidebar-label">Settings</div>
               <ul class="sidebar-nav">
-                <li class="sidebar-nav-item" onclick="showSection('settings')">
+                <li class="sidebar-nav-item ${currentSection === 'settings' ? 'active' : ''}" onclick="navigateTo('settings')">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="12" cy="12" r="3"/>
                     <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
@@ -716,8 +1141,7 @@
                 <li class="sidebar-nav-item" onclick="netlifyIdentity.logout()">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-                    <polyline points="16 17 21 12 16 7"/>
-                    <line x1="21" y1="12" x2="9" y2="12"/>
+                    <polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
                   </svg>
                   <span>Sign Out</span>
                 </li>
@@ -725,14 +1149,31 @@
             </div>
           </aside>
 
-          <main class="main" id="main-content">
-            ${renderDashboardContent()}
-          </main>
+          <main class="main" id="main-content"></main>
         </div>
       `;
+
+      renderSection(currentSection);
+    }
+
+    function navigateTo(section) {
+      currentSection = section;
+      renderDashboard();
+    }
+
+    function renderSection(section) {
+      const main = document.getElementById('main-content');
+      switch(section) {
+        case 'dashboard': main.innerHTML = renderDashboardContent(); break;
+        case 'courses': main.innerHTML = renderCoursesContent(); break;
+        case 'lessons': main.innerHTML = renderLessonsContent(); break;
+        case 'news': main.innerHTML = renderNewsContent(); break;
+        case 'settings': main.innerHTML = renderSettingsContent(); break;
+      }
     }
 
     function renderDashboardContent() {
+      const premiumCount = appData.lessons.filter(l => l.premium).length + appData.courses.filter(c => c.premium).length;
       return `
         <div class="content-header">
           <div>
@@ -740,125 +1181,42 @@
             <p class="content-subtitle">Welcome back to NYTEMODE Academy</p>
           </div>
         </div>
-
         <div class="stats-grid">
           <div class="stat-card">
             <div class="stat-card-label">Total Courses</div>
-            <div class="stat-card-value">3</div>
-            <div class="stat-card-change">+1 this month</div>
+            <div class="stat-card-value">${appData.courses.length}</div>
           </div>
           <div class="stat-card">
             <div class="stat-card-label">Total Lessons</div>
-            <div class="stat-card-value">12</div>
-            <div class="stat-card-change">+4 this month</div>
+            <div class="stat-card-value">${appData.lessons.length}</div>
           </div>
           <div class="stat-card">
             <div class="stat-card-label">News Articles</div>
-            <div class="stat-card-value">5</div>
-            <div class="stat-card-change">+2 this month</div>
+            <div class="stat-card-value">${appData.news.length}</div>
           </div>
           <div class="stat-card">
             <div class="stat-card-label">Premium Content</div>
-            <div class="stat-card-value">8</div>
-            <div class="stat-card-change">67% of total</div>
+            <div class="stat-card-value">${premiumCount}</div>
           </div>
         </div>
-
         <div class="content-header">
-          <div>
-            <h2 class="content-title" style="font-size: 20px;">Recent Content</h2>
-          </div>
-          <button class="btn btn-primary" onclick="showSection('courses')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="12" y1="5" x2="12" y2="19"/>
-              <line x1="5" y1="12" x2="19" y2="12"/>
-            </svg>
-            New Content
+          <div><h2 class="content-title" style="font-size: 20px;">Quick Actions</h2></div>
+        </div>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <button class="btn btn-primary" onclick="openCourseEditor()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            New Course
+          </button>
+          <button class="btn btn-secondary" onclick="openLessonEditor()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            New Lesson
+          </button>
+          <button class="btn btn-secondary" onclick="openNewsEditor()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            New Article
           </button>
         </div>
-
-        <div class="content-list">
-          <div class="content-card">
-            <div class="content-card-thumb">📚</div>
-            <div class="content-card-info">
-              <h3>Prompt Engineering 101</h3>
-              <p>Course • 3 lessons • Updated 2 days ago</p>
-            </div>
-            <div class="content-card-meta">
-              <span class="badge badge-category">AI</span>
-              <span class="badge badge-published">Published</span>
-            </div>
-            <div class="content-card-actions">
-              <button class="action-btn" title="Edit">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                </svg>
-              </button>
-              <button class="action-btn" title="View">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                  <circle cx="12" cy="12" r="3"/>
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          <div class="content-card">
-            <div class="content-card-thumb">📰</div>
-            <div class="content-card-info">
-              <h3>GPT-5 Release: What You Need to Know</h3>
-              <p>News Article • Published Jan 15, 2026</p>
-            </div>
-            <div class="content-card-meta">
-              <span class="badge badge-category">AI</span>
-              <span class="badge badge-published">Published</span>
-            </div>
-            <div class="content-card-actions">
-              <button class="action-btn" title="Edit">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                </svg>
-              </button>
-              <button class="action-btn" title="View">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                  <circle cx="12" cy="12" r="3"/>
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
       `;
-    }
-
-    function showSection(section) {
-      // Update active nav item
-      document.querySelectorAll('.sidebar-nav-item').forEach(item => {
-        item.classList.remove('active');
-      });
-      event.currentTarget.classList.add('active');
-
-      const mainContent = document.getElementById('main-content');
-
-      switch(section) {
-        case 'dashboard':
-          mainContent.innerHTML = renderDashboardContent();
-          break;
-        case 'courses':
-          mainContent.innerHTML = renderCoursesContent();
-          break;
-        case 'lessons':
-          mainContent.innerHTML = renderLessonsContent();
-          break;
-        case 'news':
-          mainContent.innerHTML = renderNewsContent();
-          break;
-        case 'settings':
-          mainContent.innerHTML = renderSettingsContent();
-          break;
-      }
     }
 
     function renderCoursesContent() {
@@ -868,49 +1226,41 @@
             <h1 class="content-title">Courses</h1>
             <p class="content-subtitle">Manage your Academy courses</p>
           </div>
-          <button class="btn btn-primary">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="12" y1="5" x2="12" y2="19"/>
-              <line x1="5" y1="12" x2="19" y2="12"/>
-            </svg>
+          <button class="btn btn-primary" onclick="openCourseEditor()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
             New Course
           </button>
         </div>
-
-        <div class="search-bar">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="11" cy="11" r="8"/>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-          </svg>
-          <input type="text" placeholder="Search courses...">
-        </div>
-
         <div class="content-list">
-          <div class="content-card">
-            <div class="content-card-thumb">📚</div>
-            <div class="content-card-info">
-              <h3>Prompt Engineering 101</h3>
-              <p>3 lessons • AI Category</p>
+          ${appData.courses.length === 0 ? `
+            <div class="empty-state">
+              <div class="empty-state-icon">📚</div>
+              <h3>No courses yet</h3>
+              <p>Create your first course to get started</p>
+              <button class="btn btn-primary" onclick="openCourseEditor()">Create Course</button>
             </div>
-            <div class="content-card-meta">
-              <span class="badge badge-category">AI</span>
-              <span class="badge badge-published">Published</span>
+          ` : appData.courses.map(c => `
+            <div class="content-card" onclick="openCourseEditor(appData.courses.find(x => x.id === '${c.id}'))">
+              <div class="content-card-thumb">📚</div>
+              <div class="content-card-info">
+                <h3>${c.title}</h3>
+                <p>${appData.lessons.filter(l => l.courseId === c.id).length} lessons • ${c.category}</p>
+              </div>
+              <div class="content-card-meta">
+                <span class="badge badge-category">${c.category}</span>
+                ${c.premium ? '<span class="badge badge-premium">Premium</span>' : ''}
+                <span class="badge badge-${c.status}">${c.status}</span>
+              </div>
+              <div class="content-card-actions">
+                <button class="action-btn" title="Edit" onclick="event.stopPropagation(); openCourseEditor(appData.courses.find(x => x.id === '${c.id}'))">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                </button>
+                <button class="action-btn delete" title="Delete" onclick="event.stopPropagation(); deleteCourse('${c.id}')">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                </button>
+              </div>
             </div>
-            <div class="content-card-actions">
-              <button class="action-btn" title="Edit">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                </svg>
-              </button>
-              <button class="action-btn" title="Delete">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polyline points="3 6 5 6 21 6"/>
-                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-                </svg>
-              </button>
-            </div>
-          </div>
+          `).join('')}
         </div>
       `;
     }
@@ -922,100 +1272,40 @@
             <h1 class="content-title">Lessons</h1>
             <p class="content-subtitle">Manage course lessons</p>
           </div>
-          <button class="btn btn-primary">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="12" y1="5" x2="12" y2="19"/>
-              <line x1="5" y1="12" x2="19" y2="12"/>
-            </svg>
+          <button class="btn btn-primary" onclick="openLessonEditor()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
             New Lesson
           </button>
         </div>
-
-        <div class="search-bar">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="11" cy="11" r="8"/>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-          </svg>
-          <input type="text" placeholder="Search lessons...">
-        </div>
-
         <div class="content-list">
-          <div class="content-card">
-            <div class="content-card-thumb">▶️</div>
-            <div class="content-card-info">
-              <h3>Introduction to Prompts</h3>
-              <p>Prompt Engineering 101 • 15 min</p>
+          ${appData.lessons.length === 0 ? `
+            <div class="empty-state">
+              <div class="empty-state-icon">▶️</div>
+              <h3>No lessons yet</h3>
+              <p>Create your first lesson to get started</p>
+              <button class="btn btn-primary" onclick="openLessonEditor()">Create Lesson</button>
             </div>
-            <div class="content-card-meta">
-              <span class="badge badge-published">Published</span>
+          ` : appData.lessons.map(l => `
+            <div class="content-card" onclick="openLessonEditor(appData.lessons.find(x => x.id === '${l.id}'))">
+              <div class="content-card-thumb">▶️</div>
+              <div class="content-card-info">
+                <h3>${l.title}</h3>
+                <p>${l.courseName} • ${l.duration}</p>
+              </div>
+              <div class="content-card-meta">
+                ${l.premium ? '<span class="badge badge-premium">Premium</span>' : ''}
+                <span class="badge badge-${l.status}">${l.status}</span>
+              </div>
+              <div class="content-card-actions">
+                <button class="action-btn" title="Edit" onclick="event.stopPropagation(); openLessonEditor(appData.lessons.find(x => x.id === '${l.id}'))">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                </button>
+                <button class="action-btn delete" title="Delete" onclick="event.stopPropagation(); deleteLesson('${l.id}')">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                </button>
+              </div>
             </div>
-            <div class="content-card-actions">
-              <button class="action-btn" title="Edit">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                </svg>
-              </button>
-              <button class="action-btn" title="Delete">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polyline points="3 6 5 6 21 6"/>
-                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          <div class="content-card">
-            <div class="content-card-thumb">▶️</div>
-            <div class="content-card-info">
-              <h3>Advanced Techniques</h3>
-              <p>Prompt Engineering 101 • 20 min</p>
-            </div>
-            <div class="content-card-meta">
-              <span class="badge badge-premium">Premium</span>
-              <span class="badge badge-published">Published</span>
-            </div>
-            <div class="content-card-actions">
-              <button class="action-btn" title="Edit">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                </svg>
-              </button>
-              <button class="action-btn" title="Delete">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polyline points="3 6 5 6 21 6"/>
-                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          <div class="content-card">
-            <div class="content-card-thumb">▶️</div>
-            <div class="content-card-info">
-              <h3>Real-World Applications</h3>
-              <p>Prompt Engineering 101 • 25 min</p>
-            </div>
-            <div class="content-card-meta">
-              <span class="badge badge-premium">Premium</span>
-              <span class="badge badge-draft">Draft</span>
-            </div>
-            <div class="content-card-actions">
-              <button class="action-btn" title="Edit">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                </svg>
-              </button>
-              <button class="action-btn" title="Delete">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polyline points="3 6 5 6 21 6"/>
-                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-                </svg>
-              </button>
-            </div>
-          </div>
+          `).join('')}
         </div>
       `;
     }
@@ -1027,49 +1317,40 @@
             <h1 class="content-title">News Articles</h1>
             <p class="content-subtitle">Manage your news and blog posts</p>
           </div>
-          <button class="btn btn-primary">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="12" y1="5" x2="12" y2="19"/>
-              <line x1="5" y1="12" x2="19" y2="12"/>
-            </svg>
+          <button class="btn btn-primary" onclick="openNewsEditor()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
             New Article
           </button>
         </div>
-
-        <div class="search-bar">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="11" cy="11" r="8"/>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-          </svg>
-          <input type="text" placeholder="Search articles...">
-        </div>
-
         <div class="content-list">
-          <div class="content-card">
-            <div class="content-card-thumb">📰</div>
-            <div class="content-card-info">
-              <h3>GPT-5 Release: What You Need to Know</h3>
-              <p>Published Jan 15, 2026</p>
+          ${appData.news.length === 0 ? `
+            <div class="empty-state">
+              <div class="empty-state-icon">📰</div>
+              <h3>No articles yet</h3>
+              <p>Write your first news article</p>
+              <button class="btn btn-primary" onclick="openNewsEditor()">Write Article</button>
             </div>
-            <div class="content-card-meta">
-              <span class="badge badge-category">AI</span>
-              <span class="badge badge-published">Published</span>
+          ` : appData.news.map(n => `
+            <div class="content-card" onclick="openNewsEditor(appData.news.find(x => x.id === '${n.id}'))">
+              <div class="content-card-thumb">📰</div>
+              <div class="content-card-info">
+                <h3>${n.title}</h3>
+                <p>${n.date ? new Date(n.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : 'Draft'}</p>
+              </div>
+              <div class="content-card-meta">
+                <span class="badge badge-category">${n.category}</span>
+                <span class="badge badge-${n.status}">${n.status}</span>
+              </div>
+              <div class="content-card-actions">
+                <button class="action-btn" title="Edit" onclick="event.stopPropagation(); openNewsEditor(appData.news.find(x => x.id === '${n.id}'))">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                </button>
+                <button class="action-btn delete" title="Delete" onclick="event.stopPropagation(); deleteNews('${n.id}')">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                </button>
+              </div>
             </div>
-            <div class="content-card-actions">
-              <button class="action-btn" title="Edit">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                </svg>
-              </button>
-              <button class="action-btn" title="Delete">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polyline points="3 6 5 6 21 6"/>
-                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-                </svg>
-              </button>
-            </div>
-          </div>
+          `).join('')}
         </div>
       `;
     }
@@ -1081,38 +1362,34 @@
             <h1 class="content-title">Site Settings</h1>
             <p class="content-subtitle">Configure your Academy homepage</p>
           </div>
-          <button class="btn btn-primary">
+          <button class="btn btn-primary" onclick="saveSettings()">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
-              <polyline points="17 21 17 13 7 13 7 21"/>
-              <polyline points="7 3 7 8 15 8"/>
+              <polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/>
             </svg>
             Save Changes
           </button>
         </div>
-
         <div class="content-list">
           <div class="content-card" style="display: block; cursor: default;">
-            <h3 style="color: var(--text-primary); margin-bottom: 16px;">Hero Section</h3>
-            <div style="margin-bottom: 16px;">
-              <label style="display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em;">Headline</label>
-              <input type="text" value="ACADEMY" style="width: 100%; padding: 12px 16px; background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text-primary); font-size: 14px;">
+            <h3 style="color: var(--text-primary); margin-bottom: 20px; font-size: 16px;">Hero Section</h3>
+            <div class="form-group">
+              <label class="form-label">Headline</label>
+              <input type="text" class="form-input" id="settings-headline" value="${appData.settings.heroHeadline}">
             </div>
-            <div>
-              <label style="display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em;">Subheadline</label>
-              <input type="text" value="Master AI skills with expert-led courses" style="width: 100%; padding: 12px 16px; background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text-primary); font-size: 14px;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">Subheadline</label>
+              <input type="text" class="form-input" id="settings-subhead" value="${appData.settings.heroSubhead}">
             </div>
           </div>
         </div>
       `;
     }
 
-    // Initialize Netlify Identity
-    netlifyIdentity.on('init', user => renderApp());
-    netlifyIdentity.on('login', user => renderApp());
+    // Initialize
+    netlifyIdentity.on('init', () => renderApp());
+    netlifyIdentity.on('login', () => renderApp());
     netlifyIdentity.on('logout', () => renderApp());
-
-    // Initial render
     renderApp();
   </script>
 </body>
