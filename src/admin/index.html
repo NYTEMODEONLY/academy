@@ -6,358 +6,249 @@
   <meta name="robots" content="noindex" />
   <title>NYTEMODE Academy Admin</title>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-  <!-- Custom NYTEMODE Admin Theme -->
-  <style>
-    /* Import fonts */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
-    /* Root variables */
-    :root {
-      --bg-dark: #0c0c0c;
-      --bg-card: #151515;
-      --bg-input: #1a1a1a;
-      --accent: #9d6ece;
-      --accent-hover: #b87dd4;
-      --text-primary: #ffffff;
-      --text-secondary: rgba(255, 255, 255, 0.7);
-      --text-muted: rgba(255, 255, 255, 0.4);
-      --border: rgba(255, 255, 255, 0.1);
-      --success: #4ade80;
-      --error: #ef4444;
-    }
-
-    /* Base styles */
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
-      background: var(--bg-dark) !important;
-      color: var(--text-primary) !important;
-    }
-
-    /* Main app container */
-    [class*="AppMainContainer"] {
-      background: var(--bg-dark) !important;
-    }
-
-    /* Header/Toolbar */
-    [class*="AppHeader"],
-    header {
-      background: var(--bg-card) !important;
-      border-bottom: 1px solid var(--border) !important;
-    }
-
-    /* Sidebar */
-    [class*="Sidebar"],
-    aside {
-      background: var(--bg-card) !important;
-      border-right: 1px solid var(--border) !important;
-    }
-
-    [class*="SidebarNavLink"],
-    aside a {
-      color: var(--text-secondary) !important;
-    }
-
-    [class*="SidebarNavLink"]:hover,
-    aside a:hover {
-      color: var(--text-primary) !important;
-      background: rgba(157, 110, 206, 0.1) !important;
-    }
-
-    [class*="SidebarNavLink"][class*="active"],
-    aside a.active {
-      color: var(--accent) !important;
-      background: rgba(157, 110, 206, 0.15) !important;
-    }
-
-    /* Cards and panels */
-    [class*="Card"],
-    [class*="Panel"],
-    [class*="EditorContainer"],
-    [class*="PreviewPane"] {
-      background: var(--bg-card) !important;
-      border: 1px solid var(--border) !important;
-      border-radius: 12px !important;
-    }
-
-    /* Entry cards in list */
-    [class*="ListCard"],
-    [class*="EntryCard"] {
-      background: var(--bg-card) !important;
-      border: 1px solid var(--border) !important;
-      border-radius: 8px !important;
-      transition: all 0.2s ease !important;
-    }
-
-    [class*="ListCard"]:hover,
-    [class*="EntryCard"]:hover {
-      border-color: var(--accent) !important;
-      transform: translateY(-2px) !important;
-    }
-
-    /* Inputs and textareas */
-    input,
-    textarea,
-    select,
-    [class*="Input"],
-    [class*="Textarea"],
-    [class*="Select"] {
-      background: var(--bg-input) !important;
-      border: 1px solid var(--border) !important;
-      border-radius: 8px !important;
-      color: var(--text-primary) !important;
-      padding: 12px 16px !important;
-      font-family: 'Inter', sans-serif !important;
-    }
-
-    input:focus,
-    textarea:focus,
-    select:focus,
-    [class*="Input"]:focus,
-    [class*="Textarea"]:focus {
-      border-color: var(--accent) !important;
-      outline: none !important;
-      box-shadow: 0 0 0 3px rgba(157, 110, 206, 0.2) !important;
-    }
-
-    /* Labels */
-    label,
-    [class*="Label"],
-    [class*="FieldLabel"] {
-      color: var(--text-secondary) !important;
-      font-weight: 500 !important;
-      font-size: 12px !important;
-      text-transform: uppercase !important;
-      letter-spacing: 0.05em !important;
-    }
-
-    /* Buttons */
-    button,
-    [class*="Button"] {
-      font-family: 'Inter', sans-serif !important;
-      font-weight: 500 !important;
-      border-radius: 8px !important;
-      transition: all 0.2s ease !important;
-    }
-
-    /* Primary buttons */
-    [class*="Button"][class*="primary"],
-    button[class*="primary"],
-    [class*="ToolbarButton"] {
-      background: var(--accent) !important;
-      color: white !important;
-      border: none !important;
-    }
-
-    [class*="Button"][class*="primary"]:hover,
-    button[class*="primary"]:hover {
-      background: var(--accent-hover) !important;
-    }
-
-    /* Secondary/ghost buttons */
-    [class*="Button"]:not([class*="primary"]),
-    button:not([class*="primary"]) {
-      background: transparent !important;
-      border: 1px solid var(--border) !important;
-      color: var(--text-primary) !important;
-    }
-
-    [class*="Button"]:not([class*="primary"]):hover,
-    button:not([class*="primary"]):hover {
-      border-color: var(--accent) !important;
-      color: var(--accent) !important;
-    }
-
-    /* Delete/danger buttons */
-    [class*="delete"],
-    [class*="Delete"],
-    button[class*="danger"] {
-      background: transparent !important;
-      border: 1px solid var(--error) !important;
-      color: var(--error) !important;
-    }
-
-    [class*="delete"]:hover,
-    [class*="Delete"]:hover {
-      background: var(--error) !important;
-      color: white !important;
-    }
-
-    /* Dropdown menus */
-    [class*="Dropdown"],
-    [class*="Menu"],
-    [class*="Popover"] {
-      background: var(--bg-card) !important;
-      border: 1px solid var(--border) !important;
-      border-radius: 8px !important;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5) !important;
-    }
-
-    /* Preview pane */
-    [class*="PreviewPane"] {
-      background: var(--bg-input) !important;
-    }
-
-    [class*="PreviewPane"] * {
-      color: var(--text-secondary) !important;
-    }
-
-    /* Collection header */
-    [class*="CollectionTop"],
-    [class*="CollectionMain"] h1,
-    [class*="CollectionMain"] h2 {
-      color: var(--text-primary) !important;
-    }
-
-    /* Scrollbars */
-    ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: var(--bg-dark);
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: var(--border);
-      border-radius: 4px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--text-muted);
-    }
-
-    /* Status badges */
-    [class*="StatusBadge"],
-    [class*="status"] {
-      border-radius: 9999px !important;
-      font-size: 11px !important;
-      font-weight: 600 !important;
-      text-transform: uppercase !important;
-      letter-spacing: 0.05em !important;
-    }
-
-    /* Published status */
-    [class*="published"],
-    [class*="Published"] {
-      background: rgba(74, 222, 128, 0.15) !important;
-      color: var(--success) !important;
-    }
-
-    /* Draft status */
-    [class*="draft"],
-    [class*="Draft"] {
-      background: rgba(157, 110, 206, 0.15) !important;
-      color: var(--accent) !important;
-    }
-
-    /* Modal overlays */
-    [class*="Modal"],
-    [class*="Dialog"] {
-      background: var(--bg-card) !important;
-      border: 1px solid var(--border) !important;
-      border-radius: 16px !important;
-    }
-
-    [class*="ModalOverlay"],
-    [class*="DialogOverlay"] {
-      background: rgba(0, 0, 0, 0.8) !important;
-    }
-
-    /* Editor toolbar */
-    [class*="EditorToolbar"],
-    [class*="Toolbar"] {
-      background: var(--bg-input) !important;
-      border-bottom: 1px solid var(--border) !important;
-    }
-
-    /* Markdown editor */
-    [class*="MarkdownControl"],
-    [class*="RichText"] {
-      background: var(--bg-input) !important;
-    }
-
-    /* Image widgets */
-    [class*="ImageControl"],
-    [class*="FileControl"] {
-      background: var(--bg-input) !important;
-      border: 2px dashed var(--border) !important;
-      border-radius: 12px !important;
-    }
-
-    [class*="ImageControl"]:hover,
-    [class*="FileControl"]:hover {
-      border-color: var(--accent) !important;
-    }
-
-    /* List widgets (for lessons, etc.) */
-    [class*="ListControl"] {
-      background: transparent !important;
-    }
-
-    [class*="ListItem"],
-    [class*="ObjectControl"] {
-      background: var(--bg-input) !important;
-      border: 1px solid var(--border) !important;
-      border-radius: 8px !important;
-      margin-bottom: 12px !important;
-      padding: 16px !important;
-    }
-
-    /* Toggle switches */
-    [class*="Toggle"],
-    [class*="Switch"] {
-      background: var(--bg-input) !important;
-    }
-
-    [class*="Toggle"][class*="checked"],
-    [class*="Switch"][class*="checked"] {
-      background: var(--accent) !important;
-    }
-
-    /* Links */
-    a {
-      color: var(--accent) !important;
-    }
-
-    a:hover {
-      color: var(--accent-hover) !important;
-    }
-
-    /* Loading states */
-    [class*="Loader"],
-    [class*="Spinner"] {
-      border-color: var(--border) !important;
-      border-top-color: var(--accent) !important;
-    }
-
-    /* Toast notifications */
-    [class*="Toast"],
-    [class*="Notification"] {
-      background: var(--bg-card) !important;
-      border: 1px solid var(--border) !important;
-      border-radius: 8px !important;
-    }
-
-    /* Media library */
-    [class*="MediaLibrary"] {
-      background: var(--bg-dark) !important;
-    }
-
-    [class*="MediaCard"] {
-      background: var(--bg-card) !important;
-      border: 1px solid var(--border) !important;
-      border-radius: 8px !important;
-    }
-
-    [class*="MediaCard"]:hover,
-    [class*="MediaCard"][class*="selected"] {
-      border-color: var(--accent) !important;
-    }
-  </style>
 </head>
 <body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <!-- Sveltia CMS - Modern replacement for Decap CMS with better UX -->
+  <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+
+  <script>
+    // Register preview styles to match NYTEMODE Academy branding
+    CMS.registerPreviewStyle('/css/global.css');
+
+    // Additional preview-specific styles
+    CMS.registerPreviewStyle(`
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        background: #0c0c0c;
+        color: #fff;
+        padding: 2rem;
+        line-height: 1.6;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        color: #fff;
+        margin-bottom: 1rem;
+      }
+
+      h1 { font-size: 2.5rem; font-weight: 700; }
+      h2 { font-size: 2rem; font-weight: 600; }
+      h3 { font-size: 1.5rem; font-weight: 600; }
+
+      p {
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 1rem;
+      }
+
+      a {
+        color: #9d6ece;
+      }
+
+      img {
+        max-width: 100%;
+        border-radius: 12px;
+      }
+
+      code {
+        background: #1a1a1a;
+        padding: 0.2em 0.4em;
+        border-radius: 4px;
+        font-size: 0.9em;
+      }
+
+      pre {
+        background: #1a1a1a;
+        padding: 1rem;
+        border-radius: 8px;
+        overflow-x: auto;
+      }
+
+      blockquote {
+        border-left: 3px solid #9d6ece;
+        padding-left: 1rem;
+        margin-left: 0;
+        color: rgba(255, 255, 255, 0.7);
+        font-style: italic;
+      }
+
+      ul, ol {
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+      }
+
+      li {
+        margin-bottom: 0.5rem;
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .preview-badge {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .preview-badge.premium {
+        background: rgba(157, 110, 206, 0.15);
+        color: #9d6ece;
+      }
+
+      .preview-badge.category {
+        background: rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .preview-meta {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.875rem;
+      }
+
+      .preview-card {
+        background: #151515;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .preview-thumbnail {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+      }
+    `, { raw: true });
+
+    // Course Preview Template
+    const CoursePreview = createClass({
+      render: function() {
+        const entry = this.props.entry;
+        const title = entry.getIn(['data', 'title']);
+        const description = entry.getIn(['data', 'description']);
+        const category = entry.getIn(['data', 'category']);
+        const premium = entry.getIn(['data', 'premium']);
+        const thumbnail = entry.getIn(['data', 'thumbnail']);
+        const lessons = entry.getIn(['data', 'lessons']);
+        const whatYouWillLearn = entry.getIn(['data', 'whatYouWillLearn']);
+
+        return h('div', { className: 'preview-card' },
+          thumbnail && h('img', {
+            src: this.props.getAsset(thumbnail).toString(),
+            className: 'preview-thumbnail',
+            alt: title
+          }),
+          h('div', { style: { display: 'flex', gap: '0.5rem', marginBottom: '1rem' } },
+            category && h('span', { className: 'preview-badge category' }, category),
+            premium && h('span', { className: 'preview-badge premium' }, 'Premium')
+          ),
+          h('h1', {}, title),
+          h('p', { style: { fontSize: '1.125rem' } }, description),
+          lessons && lessons.size > 0 && h('div', {},
+            h('h3', {}, lessons.size + ' Lessons'),
+            h('ul', {},
+              lessons.map((lesson, i) =>
+                h('li', { key: i },
+                  lesson.get('title'),
+                  lesson.get('duration') && h('span', { style: { color: 'rgba(255,255,255,0.5)', marginLeft: '0.5rem' } },
+                    '(' + lesson.get('duration') + ')'
+                  )
+                )
+              ).toArray()
+            )
+          ),
+          whatYouWillLearn && whatYouWillLearn.size > 0 && h('div', {},
+            h('h3', {}, "What You'll Learn"),
+            h('ul', {},
+              whatYouWillLearn.map((item, i) =>
+                h('li', { key: i }, item)
+              ).toArray()
+            )
+          ),
+          this.props.widgetFor('body')
+        );
+      }
+    });
+    CMS.registerPreviewTemplate('courses', CoursePreview);
+
+    // Lesson Preview Template
+    const LessonPreview = createClass({
+      render: function() {
+        const entry = this.props.entry;
+        const title = entry.getIn(['data', 'title']);
+        const courseTitle = entry.getIn(['data', 'courseTitle']);
+        const duration = entry.getIn(['data', 'duration']);
+        const premium = entry.getIn(['data', 'premium']);
+        const video = entry.getIn(['data', 'video']);
+
+        return h('div', {},
+          h('div', { className: 'preview-meta' },
+            courseTitle && h('span', {}, 'Course: ' + courseTitle),
+            duration && h('span', {}, duration)
+          ),
+          h('div', { style: { display: 'flex', gap: '0.5rem', marginBottom: '1rem' } },
+            premium && h('span', { className: 'preview-badge premium' }, 'Premium')
+          ),
+          h('h1', {}, title),
+          video && h('div', {
+            style: {
+              background: '#1a1a1a',
+              padding: '2rem',
+              borderRadius: '12px',
+              marginBottom: '1.5rem',
+              textAlign: 'center',
+              color: 'rgba(255,255,255,0.5)'
+            }
+          }, 'Video: ' + video),
+          h('div', { className: 'preview-card' },
+            this.props.widgetFor('body')
+          )
+        );
+      }
+    });
+    CMS.registerPreviewTemplate('lessons', LessonPreview);
+
+    // News Article Preview Template
+    const NewsPreview = createClass({
+      render: function() {
+        const entry = this.props.entry;
+        const title = entry.getIn(['data', 'title']);
+        const excerpt = entry.getIn(['data', 'excerpt']);
+        const category = entry.getIn(['data', 'category']);
+        const date = entry.getIn(['data', 'date']);
+        const thumbnail = entry.getIn(['data', 'thumbnail']);
+
+        const formattedDate = date ? new Date(date).toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        }) : '';
+
+        return h('article', {},
+          thumbnail && h('img', {
+            src: this.props.getAsset(thumbnail).toString(),
+            className: 'preview-thumbnail',
+            alt: title
+          }),
+          h('div', { style: { display: 'flex', gap: '0.5rem', marginBottom: '1rem' } },
+            category && h('span', { className: 'preview-badge category' }, category)
+          ),
+          h('div', { className: 'preview-meta' },
+            formattedDate && h('span', {}, formattedDate)
+          ),
+          h('h1', {}, title),
+          excerpt && h('p', { style: { fontSize: '1.25rem', color: 'rgba(255,255,255,0.7)' } }, excerpt),
+          h('hr', { style: { border: 'none', borderTop: '1px solid rgba(255,255,255,0.1)', margin: '2rem 0' } }),
+          this.props.widgetFor('body')
+        );
+      }
+    });
+    CMS.registerPreviewTemplate('news', NewsPreview);
+  </script>
 </body>
 </html>
