@@ -37,7 +37,7 @@ permalink: /news/
       <!-- Static fallback articles from markdown (SSG) -->
       <template id="static-articles">
         {% for article in collections.news %}
-        <div data-category="{{ article.data.category }}" data-source="static" data-date="{{ article.data.date | date: '%Y-%m-%d' }}">
+        <div data-category="{{ article.data.category }}" data-source="static" data-date="{{ article.data.date }}">
           {% include "partials/news-card.njk" %}
         </div>
         {% endfor %}
