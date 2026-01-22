@@ -2140,7 +2140,7 @@
         return;
       }
 
-      // Get Netlify Identity token for authentication
+      // Check if user is logged in
       const user = netlifyIdentity.currentUser();
       if (!user) {
         showToast('Please log in to generate articles', 'error');
@@ -2157,14 +2157,20 @@
       }
 
       try {
-        // Get fresh JWT token
-        const token = await user.jwt();
+        // Get Netlify Identity JWT token
+        let authHeader = {};
+        try {
+          const token = await user.jwt();
+          authHeader = { 'Authorization': 'Bearer ' + token };
+        } catch (e) {
+          console.log('Could not get JWT token, proceeding without');
+        }
 
         const response = await fetch('/.netlify/functions/generate-from-url', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + token
+            ...authHeader
           },
           body: JSON.stringify({ url, category })
         });

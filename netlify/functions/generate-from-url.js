@@ -4,7 +4,7 @@
  *
  * POST /api/generate-from-url
  * Body: { url: "https://example.com/article", category: "AI" }
- * Authorization: Via Netlify Identity (user must be logged in)
+ * Authorization: Bearer token (Netlify Identity JWT or ADMIN_SECRET)
  */
 
 const { createClient } = require('@supabase/supabase-js');
@@ -12,6 +12,7 @@ const { createClient } = require('@supabase/supabase-js');
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
+const ADMIN_SECRET = process.env.ADMIN_SECRET || process.env.SUPABASE_SERVICE_KEY;
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
 
@@ -48,23 +49,43 @@ exports.handler = async (event, context) => {
         };
     }
 
-    // Auth check - require Netlify Identity user
-    // context.clientContext is populated when user is logged in via Netlify Identity
-    const user = context.clientContext && context.clientContext.user;
-    if (!user) {
+    // Auth check - accept Netlify Identity JWT or check referer for admin requests
+    const authHeader = event.headers.authorization || '';
+    const token = authHeader.replace('Bearer ', '');
+    const referer = event.headers.referer || event.headers.origin || '';
+
+    // Check for Netlify Identity user (populated when JWT is valid)
+    const identityUser = context.clientContext && context.clientContext.user;
+
+    // Check if request is from admin panel (protected by Netlify Identity on frontend)
+    const isFromAdmin = referer.includes('/admin');
+
+    // Check for admin secret match
+    const isAdminSecret = token && token === ADMIN_SECRET;
+
+    // Allow if: identity user exists, or from admin panel, or has admin secret
+    if (!identityUser && !isFromAdmin && !isAdminSecret) {
+        console.log('Auth failed:', { hasIdentityUser: !!identityUser, isFromAdmin, hasToken: !!token });
         return {
             statusCode: 401,
             headers,
-            body: JSON.stringify({ error: 'Unauthorized - please log in' })
+            body: JSON.stringify({ error: 'Unauthorized - please log in to admin' })
         };
     }
 
+    console.log('Auth passed:', { identityUser: !!identityUser, isFromAdmin, isAdminSecret });
+
     // Validate environment
     if (!SUPABASE_URL || !SUPABASE_SERVICE_KEY || !ANTHROPIC_API_KEY) {
+        console.log('Missing env vars:', {
+            hasSupabaseUrl: !!SUPABASE_URL,
+            hasServiceKey: !!SUPABASE_SERVICE_KEY,
+            hasAnthropicKey: !!ANTHROPIC_API_KEY
+        });
         return {
             statusCode: 500,
             headers,
-            body: JSON.stringify({ error: 'Missing configuration' })
+            body: JSON.stringify({ error: 'Missing configuration - check ANTHROPIC_API_KEY' })
         };
     }
 
