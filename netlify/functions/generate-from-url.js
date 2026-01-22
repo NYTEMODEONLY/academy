@@ -302,11 +302,20 @@ Respond in JSON format with these fields:
 }`;
 
     try {
+        // Log API key info for debugging (not the actual key)
+        const keyLength = ANTHROPIC_API_KEY ? ANTHROPIC_API_KEY.length : 0;
+        const keyPrefix = ANTHROPIC_API_KEY ? ANTHROPIC_API_KEY.substring(0, 10) : 'none';
+        const keySuffix = ANTHROPIC_API_KEY ? ANTHROPIC_API_KEY.substring(ANTHROPIC_API_KEY.length - 6) : 'none';
+        console.log(`API key info: length=${keyLength}, prefix=${keyPrefix}..., suffix=...${keySuffix}`);
+
+        // Trim the key in case there's whitespace
+        const apiKey = ANTHROPIC_API_KEY ? ANTHROPIC_API_KEY.trim() : '';
+
         const response = await fetch('https://api.anthropic.com/v1/messages', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'x-api-key': ANTHROPIC_API_KEY,
+                'x-api-key': apiKey,
                 'anthropic-version': '2023-06-01'
             },
             body: JSON.stringify({
@@ -319,8 +328,12 @@ Respond in JSON format with these fields:
             })
         });
 
+        console.log(`Claude API response status: ${response.status}`);
+
         if (!response.ok) {
-            const error = await response.json();
+            const errorBody = await response.text();
+            console.error(`Claude API error response: ${errorBody}`);
+            const error = JSON.parse(errorBody);
             throw new Error(`Claude API error: ${error.error?.message || response.statusText}`);
         }
 
