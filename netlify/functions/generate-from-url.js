@@ -357,18 +357,39 @@ Respond in JSON format with these fields:
         }
 
         const data = await response.json();
+        console.log('Claude response received, extracting content...');
+
+        if (!data.content || !data.content[0] || !data.content[0].text) {
+            console.error('Unexpected Claude response structure:', JSON.stringify(data).substring(0, 500));
+            throw new Error('Invalid Claude response structure');
+        }
+
         const content = data.content[0].text;
+        console.log(`Claude response text length: ${content.length} chars`);
+        console.log(`Claude response preview: ${content.substring(0, 200)}...`);
 
         // Extract JSON from response
         const jsonMatch = content.match(/\{[\s\S]*\}/);
         if (!jsonMatch) {
+            console.error('No JSON found in Claude response. Full response:', content.substring(0, 1000));
             throw new Error('No JSON found in Claude response');
         }
 
-        const article = JSON.parse(jsonMatch[0]);
+        console.log('Found JSON in response, parsing...');
+        let article;
+        try {
+            article = JSON.parse(jsonMatch[0]);
+        } catch (parseError) {
+            console.error('JSON parse error:', parseError.message);
+            console.error('JSON that failed to parse:', jsonMatch[0].substring(0, 500));
+            throw new Error(`Failed to parse Claude JSON: ${parseError.message}`);
+        }
+
+        console.log('Article parsed successfully:', { title: article.title, hasContent: !!article.content });
 
         // Validate required fields
         if (!article.title || !article.content) {
+            console.error('Missing fields. Title:', !!article.title, 'Content:', !!article.content);
             throw new Error('Missing required fields in Claude response');
         }
 
